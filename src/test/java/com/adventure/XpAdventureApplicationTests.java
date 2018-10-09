@@ -22,10 +22,4 @@ public class XpAdventureApplicationTests {
     }
 
 
-    @Test
-    public void accessLevelTest() {
-
-    }
-
-
 }
