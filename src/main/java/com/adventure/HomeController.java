@@ -32,4 +32,14 @@ public class HomeController {
     public String home() {
         return "home";
     }
+
+    /**
+     * Redirects the user to login, and resets accessLevel
+     * @return String Returns a String that redirects the user to login
+     */
+    @GetMapping ("/logout")
+    public String logout(){
+
+        return "redirect:/login";
+    }
 }
