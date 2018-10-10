@@ -3,35 +3,57 @@ package com.adventure;
 
 public class User {
 
-    private String username;
-    private String password;
-    private int accessLevel;
+    private String name;
+    private String phoneNumber;
+    private String email;
+    private Login login;
 
-
-    public String getUsername() {
-        return username;
+    public User(String name, String phoneNumber, String email, Login login) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.login = login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getName() {
+        return name;
     }
 
-    public String getPassword() {
-        return password;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public int getAccessLevel() {
-        return accessLevel;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setAccessLevel(int accessLevel) {
-        this.accessLevel = accessLevel;
+    public String getEmail() {
+        return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public Login getLogin() {
+        return login;
+    }
 
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", login=" + login +
+                '}';
+    }
 }
