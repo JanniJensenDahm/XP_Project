@@ -5,16 +5,36 @@ body{
 .login-box{
     border: solid #555555;
     background-color: #ffffff;
-    display: inline-block;
-    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    width: 30%;
-    height: 40%;
+    width: 600px;
+    height: 450px;
     margin: auto;
     border-radius: 5px;
+}
+
+#loginFailed-box{
+    position: fixed;
+    border: solid #555555;
+    background-color: #ff3b008c;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.loginFailed-message{
+    margin-top: 15%;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    color: white;
 }
 
 .logo{
