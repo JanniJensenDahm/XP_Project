@@ -22,4 +22,16 @@ public class XpAdventureApplicationTests {
     }
 
 
+    @Test
+    public void accessTest(){
+
+        Login login = new Login("super", "super");
+        login.verifyUser();
+        String redirect = login.redirect();
+        Assert.assertEquals("owner_page", redirect);
+        Assert.assertEquals("sdfsdfsuper", login.getUsername());
+        Assert.assertEquals(1, login.getAccessLevel());
+    }
+
+
 }
