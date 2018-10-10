@@ -79,7 +79,7 @@ public class Login {
                 break;
             //Booking employee
             case 2:
-                redirectPage = "bookingEmployee_page";
+                redirectPage = "booking";
                 break;
             //Other employee
             case 3:

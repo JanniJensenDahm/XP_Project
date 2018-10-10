@@ -17,6 +17,10 @@ public class Booking {
         this.price = price;
     }
 
+    public Booking() {
+
+    }
+
     public Activity getActivity() {
         return activity;
     }

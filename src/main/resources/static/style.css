@@ -38,8 +38,18 @@ body{
 }
 
 .logo{
+    display: inline-block;
     float: right;
     margin-left: auto;
+    height: 221px;
+    width: 394px;
+}
+
+.logout{
+    display: inline-block;
+    margin: 20px 20px;
+    height: 50px;
+    width: 50px;
 }
 
 .login {
@@ -66,4 +76,38 @@ body{
     margin-right: auto;
 }
 
+.menu-button {
+    height: 50px;
+    width: 220px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.activity-icon {
+    height: 180px;
+    width: 180px;
+}
+
+.activity {
+    margin: 14px 45px;
+    border: double;
+}
+
+.activity-input {
+    margin: 22px 35px 0 0;
+}
+
+.activity-label {
+    margin: 0;
+    padding-left: 40px;
+}
+
+.create_booking_btn {
+    float: right;
+    margin-left: auto;
+}
+
+.add_activity_btn {
+    margin-left: 50%;
+}
