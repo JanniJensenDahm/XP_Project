@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="XP_Project" />
+        <module name="xpadventure" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="XP_Project" target="1.8" />
+      <module name="xpadventure" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
