@@ -94,7 +94,7 @@ body{
     border: double;
 }
 
-.activity-input {
+.activity-row {
     margin: 22px 35px 0 0;
 }
 
@@ -109,5 +109,9 @@ body{
 }
 
 .add_activity_btn {
-    margin-left: 50%;
+    margin-left: 28%;
+}
+
+.back_btn {
+    margin-left: 7%;
 }
