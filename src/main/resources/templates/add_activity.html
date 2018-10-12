@@ -20,28 +20,40 @@
         </div>
     </div>
     <div class="container main">
-        <div class="container login-box">
-            <form method="post" th:action="@{/add_activity.html}">
+        <div class="container activity-box">
+            <h2 class="box-header">Tilføj Aktivitet</h2>
+            <form method="post" th:action="@{/add_activity}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Aktivitetsnavn</p>
-                    <input class="col-md-8">
+                    <input class="col-md-8" th:value="Minigolf" readonly> <!-- TODO: TH:VALUE -->
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Pris</p>
-                    <input class="col-md-8" id="price">
+                    <input class="col-md-8" id="price"  readonly placeholder="0 Kr">
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Dato</p>
-                    <input>
+                    <input type="date" class="col-md-8">
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Tidspunkt</p>
-                    <select class="col-md-8 activity-input">
+                    <select class="col-md-8 activity-input"> <!-- TODO: TH:IF MINIGOLF -->
                         <option selected>Vælg</option>
+                        <option>10.00-12.00</option>
+                        <option>12.00-14.00</option>
+                        <option>14.00-16.00</option>
+                        <option>16.00-18.00</option>
+                        <option>18.00-20.00</option>
+                        <option>20.00-22.00</option>
+                    </select>
+                   <!-- <select class="col-md-8 activity-input"> TODO: TH:IF GOKART ELLER SUMO
+                        <option selected>Vælg</option>
+                        <option>10.00-11.00</option>
+                        <option>11.00-12.00</option>
                         <option>12.00-13.00</option>
                         <option>13.00-14.00</option>
-                        <option>14.00-13.00</option>
-                        <option>15.00-14.00</option>
+                        <option>14.00-15.00</option>
+                        <option>15.00-16.00</option>
                         <option>16.00-17.00</option>
                         <option>17.00-18.00</option>
                         <option>18.00-19.00</option>
@@ -49,6 +61,18 @@
                         <option>20.00-21.00</option>
                         <option>21.00-22.00</option>
                     </select>
+
+                    <select class="col-md-8 activity-input"> TODO: TH:IF PAINTBALL
+                        <option selected>Vælg</option>
+                        <option>10.00-11.30</option>
+                        <option>11.30-13.00</option>
+                        <option>13.00-14.30</option>
+                        <option>14.30-16.00</option>
+                        <option>16.00-17.30</option>
+                        <option>17.30-19.00</option>
+                        <option>19.00-20.30</option>
+                        <option>20.30-22.00</option>
+                    </select> -->
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Antal deltagere</p>
@@ -56,13 +80,19 @@
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Bookingansvarlig</p>
-                    <input class="col-md-8">
+                    <input class="col-md-8" th:value="Charlotte"> <!-- TODO: TH:VALUE -->
                 </div>
-                <div class="row activity-row">
+                <div class="row activity-row activity-row-last">
                     <p class="col-md-4 activity-label">Aktivitetsansvarlig</p>
-                    <input class="col-md-8">
+                    <select class="col-md-8 activity-input"> <!-- TODO: TH:VALUES -->
+                        <option selected>Vælg</option>
+                        <option>Johnny</option>
+                        <option>Peter</option>
+                        <option>Christina</option>
+                    </select>
                 </div>
                 <div class="row activity-row">
+                    <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
                     <button type="submit" name="add_activity_btn" class="btn btn-success add_activity_btn">TILFØJ NY AKTIVITET</button>
                     <button type="submit" name="create_booking_btn" class="btn btn-success create_booking_btn">OPRET</button>
                 </div>
@@ -88,7 +118,9 @@
     $( "#people" ).keyup(function() {
         var people = $('#people').val();
         var pricePerHour = 350;
-        $('#price').val(people*pricePerHour + " Kr");
+        var result = people*pricePerHour;
+
+        $('#price').val(result + " Kr");
 
     });
 

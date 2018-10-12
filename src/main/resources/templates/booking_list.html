@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{style.css}">
+
+    <title>Adventure Alley</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header">
+        <div class="row">
+            <a href="/index"><img class="logout" th:src="@{/Graphics/logout.png}" height="50" width="50"/></a>
+            <img class="logo" th:src="@{/Graphics/logo.png}"/>
+        </div>
+    </div>
+    <div class="container main">
+        <div class="container activity-list-box">
+            <h2 class="box-header">Bookinger</h2>
+            <form method="post" th:action="@{/add_activity.html}">
+                <table class="col-md-12">
+
+                    <tr class="row col-md-12">
+                        <th class="col-md-1">Nr</th>
+                        <th class="col-md-2">Booking medarbejder</th>
+                        <th class="col-md-2">Activity medarbejder</th>
+                        <th class="col-md-5">Dato</th>
+                        <th class="col-md-2">Kunde</th>
+                    </tr>
+
+
+                    <tbody>
+                    <tr class="row col-md-12">
+                        <td class="col-md-1">1</td>
+                        <td class="col-md-2">Charlotte</td>
+                        <td class="col-md-2">Peter</td>
+                        <td class="col-md-5">12-10-2018 Kl: 14:00 - 16:00</td>
+                        <td class="col-md-2">Mikkel</td>
+                    </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+                <div class="row activity-row">
+                    <button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<!-- Optional JavaScript -->
+
+<!--Calculate price-->
+<script type="text/javascript">
+    $("#people").keyup(function () {
+        var people = $('#people').val();
+        var pricePerHour = 350;
+        var result = people * pricePerHour;
+
+        $('#price').val(result + " Kr");
+
+    });
+
+</script>
+
+
+</body>
+</html>
