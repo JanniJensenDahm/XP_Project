@@ -20,42 +20,113 @@
             <img class="logo" th:src="@{/Graphics/logo.png}"/>
         </div>
     </div>
-    <div class="container main">
-        <div class="container activity-list-box">
-            <h2 class="box-header">Bookinger</h2>
-            <form method="post" th:action="@{/add_activity.html}">
-                <table class="col-md-12">
+    <div class="container activity-list-box">
+        <div class="row">
+            <div class="col-md-4">
 
-                    <tr class="row col-md-12">
-                        <th class="col-md-1">Nr</th>
-                        <th class="col-md-2">Booking medarbejder</th>
-                        <th class="col-md-2">Activity medarbejder</th>
-                        <th class="col-md-5">Dato</th>
-                        <th class="col-md-2">Kunde</th>
-                    </tr>
+            </div>
+            <div class="col-md-4"><h2 class="box-header">Bookinger</h2></div>
+            <div class="col-md-4"><input type="text" class="searchBox float-right form-control" id="searchBox" onkeyup="myFunction()"
+                                         placeholder="Søg her"/></div>
 
+        </div>
 
-                    <tbody>
-                    <tr class="row col-md-12">
-                        <td class="col-md-1">1</td>
-                        <td class="col-md-2">Charlotte</td>
-                        <td class="col-md-2">Peter</td>
-                        <td class="col-md-5">12-10-2018 Kl: 14:00 - 16:00</td>
+        <table class="col-md-12 text-center booking-list-header">
+            <tr class="row">
+                <th class="col-md-1">Nr</th>
+                <th class="col-md-1">Aktiviteter</th>
+                <th class="col-md-1">Kunde</th>
+                <th class="col-md-2">Aktivitets arb</th>
+                <th class="col-md-2">Booking arb</th>
+                <th class="col-md-2">Dato</th>
+                <th class="col-md-2">Tid</th>
+                <th class="col-md-1">Antal personer</th>
+            </tr>
+        </table>
+
+        <div class="booking-list">
+            <form method="post" th:action="@{/add_activity}">
+                <table class="col-md-12 text-center booking-list" id="table"> <!-- TODO: FOREACH til hver booking -->
+
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Gokart</td>
+                        <td class="col-md-1">Jesper</td>
                         <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
                     </tr>
 
-                    </tbody>
-
-
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Helloooo</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-1">15</td>
+                        <td class="col-md-1">Minigolf, Paintball</td>
+                        <td class="col-md-1">Jesper</td>
+                        <td class="col-md-2">Mikkel</td>
+                        <td class="col-md-2">Janni</td>
+                        <td class="col-md-2">12-10-2018</td>
+                        <td class="col-md-2">14:00 - 16:00</td>
+                        <td class="col-md-1">56</td>
+                    </tr>
                 </table>
-
-
-                <div class="row activity-row">
-                    <button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>
-                </div>
-
             </form>
         </div>
+        <!--<button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>-->
+        <form method="post" action="/add_activity">
+            <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
+        </form>
+
 
     </div>
 </div>
@@ -86,6 +157,36 @@
     });
 
 </script>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i,td1;
+        input = document.getElementById("searchBox");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td1 = tr[i].getElementsByTagName("td")[5];
+
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    console.log("TD: "+td.innerHTML);
+                    console.log("TD2"+td1.innerHTML);
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
+
 
 
 </body>
