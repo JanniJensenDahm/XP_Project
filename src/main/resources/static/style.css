@@ -88,10 +88,8 @@ tr:nth-child(even){
     display: inline-block;
     float: right;
     margin-left: auto;
-    /*height: 221px;*/
-    /*width: 394px;*/
-    width: 267px;
-    height: 150px;
+    width: 10%;
+    height: 10%;
 
 
 }
