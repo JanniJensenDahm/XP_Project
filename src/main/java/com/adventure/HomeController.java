@@ -16,6 +16,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("owner_page")
+    public String owner_page(Model model) {
+        return "owner_page";
+    }
+
     @PostMapping({"/", "/login"})
     public String index(Model model, @RequestParam String username, @RequestParam String password) {
         //Create login
@@ -45,7 +50,7 @@ public class HomeController {
 
     @PostMapping(value = "booking", params = "check_booking_btn")
     public String checkbookingPost(Model model) {
-        return "redirect:/check_booking";
+        return "redirect:/booking_list";
     }
 
     @GetMapping("/create_booking")
@@ -97,14 +102,32 @@ public class HomeController {
     }
 
 
-    @PostMapping("/add_activities")
-    public String asdddActivities(@ModelAttribute Booking booking, @ModelAttribute Activity activity) {
+    @PostMapping(value = "/add_activity", params = "create_booking_btn")
+    public String activitiesPost(@ModelAttribute Booking booking, @ModelAttribute Activity activity) {
         //    booking.addActivity(activity);
-
-        return "add_activities";
+        return "booking";
 
     }
 
+    @PostMapping(value = "/add_activity", params = "back_btn")
+    public String activitiesPost() {
+        //    booking.addActivity(activity);
+        return "redirect:/booking";
+
+    }
+
+//
+//    @PostMapping(value = "/booking_list", params = "create_booking_btn")
+//    public String activitiesPost(@ModelAttribute Booking booking, @ModelAttribute Activity activity) {
+//        //    booking.addActivity(activity);
+//        return "booking";
+//
+//    }
+
+    @GetMapping("/booking_list")
+    public String bookingList(Model model) {
+        return "booking_list";
+    }
 
     @GetMapping("/home")
     public String home() {

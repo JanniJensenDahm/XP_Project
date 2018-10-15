@@ -35,11 +35,32 @@ body{
     bottom: 0;
     left: 0;
     right: 0;
-    width: 770px;
-    height: 600px;
+    width: 100%;
+    /*height: 600px;*/
     margin: auto;
+    /*margin-bottom: 30px !important;*/
     border-radius: 5px;
 }
+tr:nth-child(even){
+    background-color: rgba(55, 78, 67, 0.25);
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.booking-list{
+   width: 99%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 300px;
+    margin-bottom: 15px;
+}
+
+.searchBox{
+   margin: 30px;
+    width: 80%;
+}
+
+
 
 #loginFailed-box{
     position: fixed;
@@ -67,8 +88,10 @@ body{
     display: inline-block;
     float: right;
     margin-left: auto;
-    height: 221px;
-    width: 394px;
+    width: 10%;
+    height: 10%;
+
+
 }
 
 .logout{
@@ -130,16 +153,24 @@ body{
 }
 
 .create_booking_btn {
+    margin-left: 15px;
     float: right;
-    margin-left: auto;
+    width: 170px;
+    height: 50px;
 }
 
 .add_activity_btn {
-    margin-left: 28%;
+    margin-left: 15px;
+    float: right;
+    width: 170px;
+    height: 50px;
 }
 
 .back_btn {
-    margin-left: 7%;
+    margin-left: 10px;
+    /*margin-top: 25px;*/
+    margin-bottom: 25px;
+    height: 50px;
 }
 
 .box-header {
@@ -165,4 +196,12 @@ body{
 
 .hot-btn {
     margin-top: 325px;
+}
+
+.main{
+    margin-bottom: 50px;
+}
+
+.booking-list-header{
+    width: 96.5%;
 }

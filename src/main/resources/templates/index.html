@@ -14,27 +14,28 @@
 <div class="container-fluid">
     <div class="header">
         <div class="row">
-            <img class="logo" th:src="@{/Graphics/logo.png}" height="221" width="394"/>
+            <img class="logo col-md-3 offset-md-9" th:src="@{/Graphics/logo.png}"/>
         </div>
     </div>
     <div class="container main">
-        <div class="container login-box">
-            <form method="post" th:action="@{/login}">
-                <div class="row">
-                    <h1 class="login">Log ind</h1>
-                </div>
-                <div class="row">
-                    <input class="username" th:name="username" placeholder="Brugernavn" autofocus>
-                </div>
-                <div class="row">
-                    <input class="password" th:name="password" placeholder="Adgangskode">
-                </div>
-                <div class="row">
-                    <button type="submit" class="btn btn-lg btn-success ok-button">OK</button>
-                </div>
-            </form>
+        <div class="row">
+            <div class="container login-box col-md-8 offset-md-2">
+                <form method="post" th:action="@{/login}">
+                    <div class="row">
+                        <h1 class="login">Log ind</h1>
+                    </div>
+                    <div class="row">
+                        <input class="username col-xs-4 offset-xs-4" th:name="username" placeholder="Brugernavn" autofocus>
+                    </div>
+                    <div class="row">
+                        <input class="password col-xs-4 offset-xs-4" th:name="password" placeholder="Adgangskode">
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-lg btn-success ok-button col-sm-2">OK</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
 </div>
 
