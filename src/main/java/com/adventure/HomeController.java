@@ -13,6 +13,10 @@ public class HomeController {
     public String login(Model model) {
         //Clear access level
         model.addAttribute("accessLevel", "");
+        Booking b = new Booking();
+        b.addBooking();
+
+
         return "index";
     }
 

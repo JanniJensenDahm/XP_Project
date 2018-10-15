@@ -2,7 +2,7 @@ package com.adventure;
 
 
 public class User {
-
+    private int id;
     private String name;
     private String phoneNumber;
     private String email;
@@ -45,6 +45,14 @@ public class User {
 
     public void setLogin(Login login) {
         this.login = login;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
