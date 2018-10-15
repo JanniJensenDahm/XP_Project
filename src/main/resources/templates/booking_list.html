@@ -156,6 +156,24 @@
 
     });
 
+    function myFunction() {
+        var input = document.getElementById("searchBox");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("table");
+        var tr = table.getElementsByTagName("tr");
+        for(i = 0; i < tr.length; i++){
+            var tdDate = tr[i].getElementsByTagName("td")[5];
+            var tdTime = tr[i].getElementsByTagName("td")[6];
+            if(tdDate || tdTime){
+                if(tdDate.innerHTML.toUpperCase().indexOf(filter) > -1 || tdTime.innerHTML.toUpperCase().indexOf(filter) > -1){
+                    tr[i].style.display = "";
+                }else{
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
 </script>
 
 
