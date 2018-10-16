@@ -11,11 +11,25 @@ public class Booking {
     private String time;
     private double price;
     private int peopleCount = 0;
+    private String customer_name;
+    private String customer_phone;
+    private String customer_email;
+    private String customer_company;
 
 
     public Booking(User bookingEmployee, User activityEmployee, String date, Double price, int peopleCount, String customer_name, String customer_phone,
                    String customer_email, String customer_company, ArrayList<Activity> activities) {
 
+        this.activities = activities;
+        this.bookingEmployee = bookingEmployee;
+        this.activityEmployee = activityEmployee;
+        this.date = date;
+        this.price = price;
+        this.peopleCount = peopleCount;
+        this.customer_name = customer_name;
+        this.customer_phone = customer_phone;
+        this.customer_email = customer_email;
+        this.customer_company = customer_company;
 
     }
 
