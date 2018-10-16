@@ -9,6 +9,9 @@ public class Activity {
     private int equipment;
     private ArrayList requirements;
 
+    public Activity() {
+    }
+
     public Activity(String name, String duration, double price, int equipment, ArrayList requirements) {
         this.name = name;
         this.duration = duration;
@@ -16,6 +19,7 @@ public class Activity {
         this.equipment = equipment;
         this.requirements = requirements;
     }
+
 
     public String getName() {
         return name;
