@@ -205,3 +205,15 @@ tr:nth-child(even){
 .booking-list-header{
     width: 96.5%;
 }
+
+.inputTooltip{
+    height: 30px;
+    width: 30px;
+    padding: 0 14.078px 0 0;
+}
+
+.loginTooltip{
+    margin-top: 50px;
+    height: 40px;
+    width: 40px;
+}
