@@ -15,6 +15,14 @@ public class User {
         this.login = login;
     }
 
+    public User(int id, String name, String phoneNumber, String email, Login login) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.login = login;
+    }
+
     public String getName() {
         return name;
     }

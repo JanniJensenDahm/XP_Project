@@ -5,12 +5,20 @@ import java.util.ArrayList;
 
 public class Booking {
     private ArrayList<Activity> activities;
-    User bookingEmployee;
-    User activityEmployee;
-    String date;
-    String time;
-    double price;
+    private User bookingEmployee;
+    private User activityEmployee;
+    private String date;
+    private String time;
+    private double price;
     private int peopleCount = 0;
+
+
+    public Booking(User bookingEmployee, User activityEmployee, String date, Double price, int peopleCount, String customer_name, String customer_phone,
+                   String customer_email, String customer_company, ArrayList<Activity> activities) {
+
+
+    }
+
 
     public Booking(User bookingEmployee, User activityEmployee, String date, String time, double price, int peopleCount) {
         this.bookingEmployee = bookingEmployee;
@@ -29,7 +37,7 @@ public class Booking {
     public void addBooking(Booking booking) {
         int booking_id = 0;
         Connection con = AccessDB.getConnection();
-        String insertBookingSQL = "INSERT INTO Bookings  (bookingEmployee, activityEmployee, Date, Time, Price) VALUES(?,?,?,?,?,?)";
+        String insertBookingSQL = "INSERT INTO Bookings  (bookingEmployee, activityEmployee, Date, Price) VALUES(?,?,?,?,?,?)";
 
         //Add booking
         try {
@@ -38,9 +46,8 @@ public class Booking {
             preparedStatement.setInt(1, booking.getBookingEmployee().getId());
             preparedStatement.setInt(2, booking.getActivityEmployee().getId());
             preparedStatement.setString(3, booking.getDate());
-            preparedStatement.setString(4, booking.getTime());
-            preparedStatement.setDouble(5, booking.getPrice());
-            preparedStatement.setInt(6, booking.getPeopleCount());
+            preparedStatement.setDouble(4, booking.getPrice());
+            preparedStatement.setInt(5, booking.getPeopleCount());
             preparedStatement.executeUpdate();
 
 
@@ -65,7 +72,7 @@ public class Booking {
             //Add all activities
             for (Activity activity : booking.getActivities()) {
                 preparedStatement = con.prepareStatement(insertActivitySql, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setString(1, activity.getName());
+                preparedStatement.setString(1, activity.getActivity_name());
                 preparedStatement.executeUpdate();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
@@ -83,7 +90,6 @@ public class Booking {
                 preparedStatement.setInt(1, booking_id);
                 preparedStatement.setInt(2, activity);
                 preparedStatement.setInt(3, booking.getPeopleCount());
-
             }
 
 
@@ -99,6 +105,90 @@ public class Booking {
         //Connect activities to booking
 
 
+    }
+
+    @SuppressWarnings("Duplicates")
+    public ArrayList<Booking> getBookings() {
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "SELECT * FROM Booking_has_activities" +
+                "JOIN Bookings ON (Booking_has_activities.booking_id = Bookings.booking_id);";
+        ArrayList<Booking> bookingList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    try {
+                        bookingList.add(new Booking(getUserById(rs.getInt("bookingEmployee")),getUserById(rs.getInt("activityEmployee")),
+                                rs.getString("date"),
+                                rs.getDouble("price"), rs.getInt("peopleCount"), rs.getString("customer_name"),
+                                rs.getString("customer_phone"), rs.getString("customer_email"),
+                                rs.getString("customer_company"),getActivitiesByBookingId(rs.getInt("booking_id"))));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return bookingList;
+    }
+
+    public User getUserById(int id) {
+        User user = null;
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "SELECT * FROM Users" +
+                "JOIN login ON(Users.login_id = login.id) WHERE user_id = ?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    user = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("phone"), rs.getString("email"),
+                    new Login(rs.getString("username"), rs.getString("password"), rs.getInt("accessLevel")));
+                }
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+    public ArrayList<Activity> getActivitiesByBookingId(int id) {
+        ArrayList<Activity> activityList = new ArrayList<>();
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "SELECT * FROM Booking_has_activities" +
+                "JOIN Activities ON (Booking_has_activities.activity_id = Activities.activity_id) WHERE Booking_has_activities.booking_id = ?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    activityList.add(new Activity(rs.getString("activity_name"), rs.getDouble("activity_price"), rs.getInt("equipment"),
+                            rs.getString("requirements"), rs.getDouble("activity_duration")));
+                }
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activityList;
     }
 
     private int getPeopleCount() {

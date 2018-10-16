@@ -27,6 +27,11 @@ public class Login {
         this.password = password;
     }
 
+    public Login(String username, String password, int accessLevel) {
+        this.username = username;
+        this.password = password;
+        this.accessLevel = accessLevel;
+    }
 
     //Methods
 
