@@ -13,6 +13,10 @@ public class HomeController {
     public String login(Model model) {
         //Clear access level
         model.addAttribute("accessLevel", "");
+        Booking b = new Booking();
+//        b.addBooking();
+
+
         return "index";
     }
 
@@ -126,6 +130,10 @@ public class HomeController {
 
     @GetMapping("/booking_list")
     public String bookingList(Model model) {
+        Booking booking = new Booking();
+        model.addAttribute("Bookings",booking.getBookings());
+
+
         return "booking_list";
     }
 
@@ -136,10 +144,11 @@ public class HomeController {
 
     /**
      * Redirects the user to login, and resets accessLevel
+     *
      * @return String Returns a String that redirects the user to login
      */
-    @GetMapping ("/logout")
-    public String logout(){
+    @GetMapping("/logout")
+    public String logout() {
 
         return "redirect:/login";
     }

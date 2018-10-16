@@ -1,74 +1,61 @@
 package com.adventure;
 
-import java.util.ArrayList;
-
 public class Activity {
-    private String name;
-    private String duration;
-    private double price;
-    private ArrayList equipment;
-    private ArrayList requirements;
+    private String activity_name;
+    private Double activity_price;
+    private int equipment;
+    private String requirements;
+    private double activity_duration;
 
     public Activity() {
+
     }
 
-    public Activity(String name, String duration, double price, ArrayList equipment, ArrayList requirements) {
-        this.name = name;
-        this.duration = duration;
-        this.price = price;
+    public Activity(String activity_name, Double activity_price, int equipment, String requirements, Double activity_duration) {
+        this.activity_name = activity_name;
+        this.activity_price = activity_price;
         this.equipment = equipment;
         this.requirements = requirements;
+        this.activity_duration = activity_duration;
     }
 
-
-    public String getName() {
-        return name;
+    public String getActivity_name() {
+        return activity_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActivity_name(String activity_name) {
+        this.activity_name = activity_name;
     }
 
-    public String getDuration() {
-        return duration;
+    public Double getActivity_price() {
+        return activity_price;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setActivity_price(Double activity_price) {
+        this.activity_price = activity_price;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public ArrayList getEquipment() {
+    public int getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(ArrayList equipment) {
+    public void setEquipment(int equipment) {
         this.equipment = equipment;
     }
 
-    public ArrayList getRequirements() {
+    public String getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(ArrayList requirements) {
+    public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "name='" + name + '\'' +
-                ", duration='" + duration + '\'' +
-                ", price=" + price +
-                ", equipment=" + equipment +
-                ", requirements=" + requirements +
-                '}';
+    public Double getActivity_duration() {
+        return activity_duration;
+    }
+
+    public void setActivity_duration(Double activity_duration) {
+        this.activity_duration = activity_duration;
     }
 }

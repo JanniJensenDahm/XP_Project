@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CreateBooking" />
         <module name="XP_Project" />
         <module name="xpadventure" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CreateBooking" target="1.8" />
       <module name="XP_Project" target="1.8" />
       <module name="xpadventure" target="1.8" />
     </bytecodeTargetLevel>
