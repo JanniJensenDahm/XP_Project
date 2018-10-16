@@ -6,13 +6,13 @@ public class Activity {
     private String name;
     private String duration;
     private double price;
-    private int equipment;
+    private ArrayList equipment;
     private ArrayList requirements;
 
     public Activity() {
     }
 
-    public Activity(String name, String duration, double price, int equipment, ArrayList requirements) {
+    public Activity(String name, String duration, double price, ArrayList equipment, ArrayList requirements) {
         this.name = name;
         this.duration = duration;
         this.price = price;
@@ -45,11 +45,11 @@ public class Activity {
         this.price = price;
     }
 
-    public int getEquipment() {
+    public ArrayList getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(int equipment) {
+    public void setEquipment(ArrayList equipment) {
         this.equipment = equipment;
     }
 
