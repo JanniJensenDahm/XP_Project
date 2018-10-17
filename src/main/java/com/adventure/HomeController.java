@@ -132,8 +132,6 @@ public class HomeController {
     public String bookingList(Model model) {
         Booking booking = new Booking();
         model.addAttribute("Bookings",booking.getBookings());
-
-
         return "booking_list";
     }
 

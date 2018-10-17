@@ -10,15 +10,15 @@ public class Booking {
     private String date;
     private String time;
     private double price;
-    private int peopleCount = 0;
+    private int peopleCount;
     private String customer_name;
     private String customer_phone;
     private String customer_email;
     private String customer_company;
-
+    private int booking_id;
 
     public Booking(User bookingEmployee, User activityEmployee, String date, Double price, int peopleCount, String customer_name, String customer_phone,
-                   String customer_email, String customer_company, ArrayList<Activity> activities) {
+                   String customer_email, String customer_company, ArrayList<Activity> activities, int booking_id) {
 
         this.activities = activities;
         this.bookingEmployee = bookingEmployee;
@@ -30,8 +30,10 @@ public class Booking {
         this.customer_phone = customer_phone;
         this.customer_email = customer_email;
         this.customer_company = customer_company;
+        this.booking_id = booking_id;
 
     }
+
 
 
     public Booking(User bookingEmployee, User activityEmployee, String date, String time, double price, int peopleCount) {
@@ -124,8 +126,7 @@ public class Booking {
     @SuppressWarnings("Duplicates")
     public ArrayList<Booking> getBookings() {
         Connection con = AccessDB.getConnection();
-        String selectSQL = "SELECT * FROM Booking_has_activities" +
-                "JOIN Bookings ON (Booking_has_activities.booking_id = Bookings.booking_id);";
+        String selectSQL = "SELECT * FROM Booking_has_activities JOIN Bookings ON (Booking_has_activities.booking_id = Bookings.booking_id) GROUP BY Bookings.booking_id";
         ArrayList<Booking> bookingList = new ArrayList<>();
 
         try {
@@ -140,7 +141,10 @@ public class Booking {
                                 rs.getString("date"),
                                 rs.getDouble("price"), rs.getInt("peopleCount"), rs.getString("customer_name"),
                                 rs.getString("customer_phone"), rs.getString("customer_email"),
-                                rs.getString("customer_company"),getActivitiesByBookingId(rs.getInt("booking_id"))));
+                                rs.getString("customer_company"),getActivitiesByBookingId(rs.getInt("booking_id")),rs.getInt("booking_id")));
+
+
+                        rs.getString("customer_phone");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -160,8 +164,7 @@ public class Booking {
     public User getUserById(int id) {
         User user = null;
         Connection con = AccessDB.getConnection();
-        String selectSQL = "SELECT * FROM Users" +
-                "JOIN login ON(Users.login_id = login.id) WHERE user_id = ?";
+        String selectSQL = "SELECT * FROM Users JOIN login ON(Users.login_id = login.id) WHERE user_id = ?";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1,id);
@@ -169,7 +172,7 @@ public class Booking {
             if (rs != null) {
                 while (rs.next()) {
                     user = new User(rs.getInt("user_id"), rs.getString("name"), rs.getString("phone"), rs.getString("email"),
-                    new Login(rs.getString("username"), rs.getString("password"), rs.getInt("accessLevel")));
+                            new Login(rs.getString("username"), rs.getString("password"), rs.getInt("accessLevel")));
                 }
             }
             preparedStatement.close();
@@ -184,8 +187,7 @@ public class Booking {
     public ArrayList<Activity> getActivitiesByBookingId(int id) {
         ArrayList<Activity> activityList = new ArrayList<>();
         Connection con = AccessDB.getConnection();
-        String selectSQL = "SELECT * FROM Booking_has_activities" +
-                "JOIN Activities ON (Booking_has_activities.activity_id = Activities.activity_id) WHERE Booking_has_activities.booking_id = ?";
+        String selectSQL = "SELECT * FROM Booking_has_activities JOIN Activities ON (Booking_has_activities.activity_id = Activities.activity_id) WHERE Booking_has_activities.booking_id = ?";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
             preparedStatement.setInt(1,id);
@@ -205,10 +207,9 @@ public class Booking {
         return activityList;
     }
 
-    private int getPeopleCount() {
-        return this.peopleCount;
+    public int getPeopleCount() {
+        return peopleCount;
     }
-
 
     public ArrayList<Activity> getActivities() {
         return activities;
@@ -229,6 +230,7 @@ public class Booking {
     public User getActivityEmployee() {
         return activityEmployee;
     }
+
 
     public void setActivityEmployee(User activityEmployee) {
         this.activityEmployee = activityEmployee;
@@ -295,6 +297,15 @@ public class Booking {
         this.customer_company = customer_company;
     }
 
+
+    public int getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(int booking_id) {
+        this.booking_id = booking_id;
+    }
+
     @Override
     public String toString() {
 //        return "Booking{" +
@@ -308,4 +319,6 @@ public class Booking {
 //    }
         return "Booking";
     }
+
+
 }

@@ -5,7 +5,7 @@ import java.sql.*;
 public class AccessDB {
     static AccessDB instance = new AccessDB();
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://adventurevalley.crq7o79i1nyl.us-east-2.rds.amazonaws.com:3306/AdventureValley?useSSL=false";
+    static final String DATABASE_URL = "jdbc:mysql://adventurevalley.ch2nssgxxruj.eu-west-2.rds.amazonaws.com:3306/AdventureValley?useSSL=false";
     static Connection con;
 
     private AccessDB() {

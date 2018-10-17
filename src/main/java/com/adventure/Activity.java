@@ -58,4 +58,10 @@ public class Activity {
     public void setActivity_duration(Double activity_duration) {
         this.activity_duration = activity_duration;
     }
+
+    @Override
+    public String toString() {
+        return activity_name;
+
+    }
 }

@@ -126,5 +126,9 @@ public class Login {
         this.accessLevel = accessLevel;
     }
 
-
+    @Override
+    public String toString() {
+        return "Login{" +
+                "username='" + username;
+    }
 }
