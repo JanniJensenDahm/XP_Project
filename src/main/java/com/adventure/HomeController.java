@@ -57,6 +57,16 @@ public class HomeController {
         return "redirect:/booking_list";
     }
 
+    @PostMapping(value = "booking", params = "check_activity_btn")
+    public String checkactivityPost(Model model) {
+        return "redirect:/newActivity";
+    }
+
+    @PostMapping(value = "booking", params = "create_activity_btn")
+    public String activityPost(Model model) {
+        return "redirect:/owner_page";
+    }
+
     @GetMapping("/create_booking")
     public String createBooking(Model model) {
         Booking booking = new Booking();
