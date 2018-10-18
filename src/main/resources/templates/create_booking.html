@@ -15,25 +15,26 @@
     <div class="header">
         <div class="row">
             <a href="/index"><img class="logout" th:src="@{/Graphics/logout.png}" height="50" width="50"/></a>
-            <img class="logo" th:src="@{/Graphics/logo.png}"/>
+            <img class="logo" th:src="@{/Graphics/logo.png}" th:height="221" th:width="394"/>
         </div>
     </div>
     <div class="container main">
         <div class="container login-box">
             <form method="post" th:action="@{/create_booking}">
+
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                     <button type="submit" class="btn activity" name="minigolf"><img class="activity-icon" th:src="@{/Graphics/minigolf.png}"/></button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                     <button type="submit" class="btn activity" name="gokart"><img class="activity-icon" th:src="@{/Graphics/gokart.png}"/></button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                     <button type="submit" class="btn activity" name="paintball"><img class="activity-icon" th:src="@{/Graphics/paintball.png}"/></button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <button type="submit" class="btn activity" name="sumo"><img class="activity-icon" th:src="@{/Graphics/sumo.png}"/></button>
                     </div>
                 </div>
