@@ -150,4 +150,15 @@ public class HomeController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/newActivity")
+    public String newActivity(Model model) {
+        model.addAttribute("activity", new Activity());
+        return "newActivity";
+    }
+    @PostMapping("/newActivity")
+    public String newActivity(@ModelAttribute Activity activity, Model model) {
+       Activity.addNewActivity(activity);
+        return "redirect:owner_page";
+    }
 }

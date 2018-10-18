@@ -1,5 +1,7 @@
 package com.adventure;
 
+import java.sql.*;
+
 public class Activity {
     private String activity_name;
     private Double activity_price;
@@ -57,6 +59,27 @@ public class Activity {
 
     public void setActivity_duration(Double activity_duration) {
         this.activity_duration = activity_duration;
+    }
+
+    public static void addNewActivity (Activity activity) {
+        Connection con = AccessDB.getConnection();
+        String insertActivitySQL = "INSERT INTO Activities  (activity_name, activity_price, equipment, requirements, activity_duration) VALUES(?,?,?,?,?)";
+
+        //Add booking
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = con.prepareStatement(insertActivitySQL, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, activity.getActivity_name());
+            preparedStatement.setDouble(2, activity.getActivity_price());
+            preparedStatement.setInt(3, activity.getEquipment());
+            preparedStatement.setString(4, activity.getRequirements());
+            preparedStatement.setDouble(5, activity.getActivity_duration());
+            preparedStatement.executeUpdate();
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
