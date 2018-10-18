@@ -10,6 +10,8 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{style.css}">
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Adventure Alley</title>
 </head>
 <body>
@@ -149,6 +151,9 @@
 
     });
 
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 

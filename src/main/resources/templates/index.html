@@ -10,6 +10,8 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{style.css}">
     <title>Adventure Alley</title>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -32,9 +34,8 @@
                             <input class=" username col-xs-4 offset-xs-4" th:name="username" placeholder="Brugernavn"
                                    autofocus>
                         </div>
-                        <div class="col-md-4">
-                            <img class="loginTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                                 data-placement="right" title="Indtast brugernavn"/>
+                        <div class="col-md-4 container">
+                            <a class="tooltip-right" data-toggle="tooltip" title="Indtast brugernavn"><img class="logintooltipicon" src="Graphics/inputTooltip.png"/></a>
                         </div>
                     </div>
                     <div class="row">
@@ -42,9 +43,8 @@
                         <div class="col-md-4">
                             <input class="password col-xs-4 offset-xs-4" th:name="password" placeholder="Adgangskode">
                         </div>
-                        <div class="col-md-4">
-                            <img class="loginTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                                 data-placement="right" title="Indtast adgangskode"/>
+                        <div class="col-md-4 container">
+                            <a data-toggle="tooltip" title="Indtast adgangskode"><img class="logintooltipicon" src="Graphics/inputTooltip.png"/></a>
                         </div>
                     </div>
                     <div class="row">
@@ -70,5 +70,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 </html>

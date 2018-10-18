@@ -212,9 +212,14 @@ tr:nth-child(even){
     padding: 7.5px 14.078px 7.5px 15px;
 }
 
-.loginTooltip{
+.logintooltipicon{
     margin-top: 50px;
     height: 40px;
     width: 40px;
     padding: 10px;
 }
+
+.tooltip-right{
+    top: 5px;
+}
+
