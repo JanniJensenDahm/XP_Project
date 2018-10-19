@@ -233,3 +233,15 @@ tr:nth-child(even){
 .heightauto {
     height: auto;
 }
+.inputTooltip{
+    height: 30px;
+    width: 15px;
+    padding: 7.5px 14.078px 7.5px 15px;
+}
+
+.loginTooltip{
+    margin-top: 50px;
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+}
