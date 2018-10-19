@@ -171,8 +171,5 @@ public class HomeController {
        Activity.addNewActivity(activity);
         return "redirect:owner_page";
     }
-    @PostMapping(value = "/newActivity", params = "back_btn_activity")
-    public String newActivity() {
-        return "redirect:owner_page";
-    }
+
 }

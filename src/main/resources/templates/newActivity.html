@@ -27,27 +27,27 @@
             <form method="post" th:action="@{/newActivity}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Aktivitetsnavn</p>
-                    <input class="col-md-8" th:field="${activity.activity_name}"> <!-- TODO: TH:VALUE -->
+                    <input class="col-md-8" required th:field="${activity.activity_name}"> <!-- TODO: TH:VALUE -->
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Pris på aktivitet</p>
-                    <input type="number" class="col-md-8" th:field="${activity.activity_price}">
+                    <input type="number" class="col-md-8" required th:field="${activity.activity_price}">
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Udstyr</p>
-                    <input type="number" class="col-md-8" th:field="${activity.equipment}">
+                    <input type="number" class="col-md-8" required th:field="${activity.equipment}">
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Aktivitetskrav</p>
-                    <input class="col-md-8" th:field="${activity.requirements}" >
+                    <input class="col-md-8" required th:field="${activity.requirements}" >
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Varighed på aktivitet</p>
-                    <input type="number" class="col-md-8" th:field="${activity.activity_duration}">
+                    <input class="col-md-8" required th:field="${activity.activity_duration}">
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top25px">
-                        <button type="submit" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
+                        <button type="submit" onclick="goBack()" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
                         <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn">
                             OPRET AKTIVITET
                         </button>
@@ -71,6 +71,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script
 
 
 
