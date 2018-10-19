@@ -166,9 +166,13 @@ public class HomeController {
         model.addAttribute("activity", new Activity());
         return "newActivity";
     }
-    @PostMapping("/newActivity")
+    @PostMapping(value = "/newActivity")
     public String newActivity(@ModelAttribute Activity activity, Model model) {
        Activity.addNewActivity(activity);
+        return "redirect:owner_page";
+    }
+    @PostMapping(value = "/newActivity", params = "back_btn_activity")
+    public String newActivity() {
         return "redirect:owner_page";
     }
 }

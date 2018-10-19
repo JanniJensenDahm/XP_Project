@@ -20,23 +20,9 @@
             <img class="logo" th:src="@{/Graphics/logo.png}" th:height="221" th:width="394"/>
         </div>
     </div>
-    <!--<form method="Post" th:action="@{/newActivity}">-->
-        <!--<p>Aktivitetsnavn:</p>-->
-        <!--<input type="text" th:field="${activity.activity_name}" required="true" />-->
-        <!--<p>Aktivitets Pris:</p>-->
-        <!--<input type="number" th:field="${activity.activity_price}" required="true" />-->
-        <!--<p>Udstyr</p>-->
-        <!--<input type="number" th:field="${activity.equipment}" required="true" />-->
-        <!--<p>Aktivitetskrav</p>-->
-        <!--<input type="text" th:field="${activity.requirements}" required="true" />-->
-        <!--<p>Aktivitets varighed</p>-->
-        <!--<input type="number" th:field="${activity.activity_duration}" required="true" />-->
-        <!--<p></p>-->
-        <!--<input class="btn-create" type="submit" value="Send" />-->
-    <!--</form>-->
 
     <div class="container main">
-        <div class="container activity-box">
+        <div class="container activity-box heightauto">
             <h2 class="box-header">Tilføj Aktivitet</h2>
             <form method="post" th:action="@{/newActivity}">
                 <div class="row activity-row">
@@ -56,12 +42,12 @@
                     <input class="col-md-8" th:field="${activity.requirements}" >
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Varihed på aktivitet</p>
+                    <p class="col-md-4 activity-label">Varighed på aktivitet</p>
                     <input type="number" class="col-md-8" th:field="${activity.activity_duration}">
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
+                    <div class="col-md-12 margin-top25px">
+                        <button type="submit" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
                         <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn">
                             OPRET AKTIVITET
                         </button>
