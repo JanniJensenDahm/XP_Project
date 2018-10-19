@@ -13,6 +13,10 @@ public class HomeController {
     public String login(Model model) {
         //Clear access level
         model.addAttribute("accessLevel", "");
+        Booking b = new Booking();
+//        b.addBooking();
+
+
         return "index";
     }
 
@@ -51,6 +55,16 @@ public class HomeController {
     @PostMapping(value = "booking", params = "check_booking_btn")
     public String checkbookingPost(Model model) {
         return "redirect:/booking_list";
+    }
+
+    @PostMapping(value = "booking", params = "check_activity_btn")
+    public String checkactivityPost(Model model) {
+        return "redirect:/newActivity";
+    }
+
+    @PostMapping(value = "booking", params = "create_activity_btn")
+    public String activityPost(Model model) {
+        return "redirect:/owner_page";
     }
 
     @GetMapping("/create_booking")
@@ -126,6 +140,8 @@ public class HomeController {
 
     @GetMapping("/booking_list")
     public String bookingList(Model model) {
+        Booking booking = new Booking();
+        model.addAttribute("Bookings",booking.getBookings());
         return "booking_list";
     }
 
@@ -136,11 +152,24 @@ public class HomeController {
 
     /**
      * Redirects the user to login, and resets accessLevel
+     *
      * @return String Returns a String that redirects the user to login
      */
-    @GetMapping ("/logout")
-    public String logout(){
+    @GetMapping("/logout")
+    public String logout() {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/newActivity")
+    public String newActivity(Model model) {
+        model.addAttribute("activity", new Activity());
+        return "newActivity";
+    }
+    @PostMapping(value = "/newActivity")
+    public String newActivity(@ModelAttribute Activity activity, Model model) {
+       Activity.addNewActivity(activity);
+        return "redirect:owner_page";
+    }
+
 }

@@ -47,77 +47,15 @@
         <div class="booking-list">
             <form method="post" th:action="@{/add_activity}">
                 <table class="col-md-12 text-center booking-list" id="table"> <!-- TODO: FOREACH til hver booking -->
-
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Minigolf, Gokart</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">12-10-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Minigolf, Paintball</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">12-10-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Gokart</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">12-10-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Minigolf, Sumo Wrestling</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">17-10-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Sumo Wrestling</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">15-09-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Paintball</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Helloooo</td>
-                        <td class="col-md-2">13-10-2018</td>
-                        <td class="col-md-2">14:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="col-md-1">15</td>
-                        <td class="col-md-1">Minigolf</td>
-                        <td class="col-md-1">Jesper</td>
-                        <td class="col-md-2">Mikkel</td>
-                        <td class="col-md-2">Janni</td>
-                        <td class="col-md-2">12-10-2018</td>
-                        <td class="col-md-2">13:00 - 16:00</td>
-                        <td class="col-md-1">56</td>
+                    <tr class="row" th:each="Booking: ${Bookings}">
+                        <td class="col-md-1" th:text="${Booking.booking_id}"></td>
+                        <td class="col-md-1" th:text="${Booking.activities}"></td>
+                        <td class="col-md-1" th:text="${Booking.customer_name}"></td>
+                        <td class="col-md-2" th:text="${Booking.activityEmployee}"></td>
+                        <td class="col-md-2" th:text="${Booking.bookingEmployee}"></td>
+                        <td class="col-md-2" th:text="${Booking.date}"></td>
+                        <td class="col-md-2" th:text="${Booking.time}"></td>
+                        <td class="col-md-1" th:text="${Booking.peopleCount}"></td>
                     </tr>
                 </table>
             </form>
@@ -155,26 +93,6 @@
         $('#price').val(result + " Kr");
 
     });
-
-    function myFunction() {
-        var input = document.getElementById("searchBox");
-        var filter = input.value.toUpperCase();
-        var table = document.getElementById("table");
-        var tr = table.getElementsByTagName("tr");
-        for(i = 0; i < tr.length; i++){
-            var tdActivity = tr[i].getElementsByTagName("td")[1];
-            var tdDate = tr[i].getElementsByTagName("td")[5];
-            var tdTime = tr[i].getElementsByTagName("td")[6];
-            if(tdDate || tdTime){
-                if(tdActivity.innerHTML.toUpperCase().indexOf(filter) > -1 || tdDate.innerHTML.toUpperCase().indexOf(filter) > -1 || tdTime.innerHTML.toUpperCase().indexOf(filter) > -1){
-                    tr[i].style.display = "";
-                }else{
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-    
 
 </script>
 
