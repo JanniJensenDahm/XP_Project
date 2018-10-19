@@ -83,17 +83,36 @@
 
 <!-- Optional JavaScript -->
 
+<script>
+    function myFunction() {
+        var input = document.getElementById("searchBox");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("table");
+        var tr = table.getElementsByTagName("tr");
+        for(i = 0; i < tr.length; i++){
+            var tdActivity = tr[i].getElementsByTagName("td")[1];
+            var tdDate = tr[i].getElementsByTagName("td")[5];
+            var tdTime = tr[i].getElementsByTagName("td")[6];
+            if(tdDate || tdTime){
+                if(tdActivity.innerHTML.toUpperCase().indexOf(filter) > -1 || tdDate.innerHTML.toUpperCase().indexOf(filter) > -1 || tdTime.innerHTML.toUpperCase().indexOf(filter) > -1){
+                    tr[i].style.display = "";
+                }else{
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
 <!--Calculate price-->
 <script type="text/javascript">
     $("#people").keyup(function () {
         var people = $('#people').val();
         var pricePerHour = 350;
         var result = people * pricePerHour;
-
         $('#price').val(result + " Kr");
-
     });
-
 </script>
 
 
