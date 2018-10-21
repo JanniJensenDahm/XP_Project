@@ -93,7 +93,7 @@ public class HomeController {
 
     @SuppressWarnings("Duplicates")
     @PostMapping("/shop")
-    public String shop_page1(@RequestParam Map<String, String[]> parameters, Model model) {
+    public String shop_page1(Model model) {
         ArrayList<Product> productlist = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
