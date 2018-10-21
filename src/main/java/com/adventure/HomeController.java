@@ -127,7 +127,7 @@ public class HomeController {
         model.addAttribute("categories", categories);
         model.addAttribute("productlist", productlist);
 
-        return "shop";
+        return "redirect:/shop";
     }
 
 
