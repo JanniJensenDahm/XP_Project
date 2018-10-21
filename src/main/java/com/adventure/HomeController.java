@@ -53,25 +53,6 @@ public class HomeController {
 @SuppressWarnings("Duplicates")
     @GetMapping("/shop")
     public String shop_page(Model model) {
-    //Dummy values
-
-    /*ArrayList<Product> productlist = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-            productlist.add(new Product("Sodavand","Cola" +i, 150.4,85,i+1));
-        }
-
-
-        for (int i = 10; i <  15; i++) {
-            productlist.add(new Product("Chips","Bugles" +i, 25,85,i));
-
-        }
-
-
-        for (int i = 16; i < 21 ; i++) {
-            productlist.add(new Product("T-shirt","Jesper Fan T-Shirt" +i, 300,85,i+1));
-            productlist.add(new Product("T-shirt","Mikkel Fan T-Shirt" +i, 300,85,i+1));
-        }*/
 
         ArrayList<Product> productlist = Product.getProducts();
 
