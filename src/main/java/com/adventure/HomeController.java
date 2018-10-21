@@ -4,6 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 @SessionAttributes({"accessLevel", "Booking"})
 @Controller
 public class HomeController {
@@ -20,10 +25,111 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("owner_page")
+    @GetMapping("/owner_page")
     public String owner_page(Model model) {
         return "owner_page";
     }
+
+    @PostMapping(value = "/owner_page", params = "shop_btn")
+    public String shopPage() {
+        return "redirect:/shop";
+    }
+
+    @PostMapping(value = "/owner_page", params = "create_booking_btn")
+    public String createBoooking() {
+        return "redirect:/create_booking";
+    }
+
+    @PostMapping(value = "/owner_page", params = "check_booking_btn")
+    public String bookinglist() {
+        return "redirect:/booking_list";
+    }
+
+    @PostMapping(value = "/owner_page", params = "check_activity_btn")
+    public String newActivity() {
+        return "redirect:/newActivity";
+    }
+
+@SuppressWarnings("Duplicates")
+    @GetMapping("/shop")
+    public String shop_page(Model model) {
+    //Dummy values
+
+    ArrayList<Product> productlist = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            productlist.add(new Product("Sodavand","Cola" +i, 150.4,85,i+1));
+        }
+
+
+        for (int i = 10; i <  15; i++) {
+            productlist.add(new Product("Chips","Bugles" +i, 25,85,i));
+
+        }
+
+
+        for (int i = 16; i < 21 ; i++) {
+            productlist.add(new Product("T-shirt","Jesper Fan T-Shirt" +i, 300,85,i+1));
+            productlist.add(new Product("T-shirt","Mikkel Fan T-Shirt" +i, 300,85,i+1));
+        }
+
+
+
+        /* THS WILL WORK WHEN THE OTHER TEAMS METHODS IS IMPLEMENTED
+        ArrayList<Product> productlist = Product.getProducts();
+*/
+
+        Set<String> categories = new HashSet<>();
+        for (int i = 0; i < productlist.size(); i++) {
+            categories.add(productlist.get(i).getCategory());
+        }
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("productlist", productlist);
+
+
+        return "shop";
+    }
+
+    @SuppressWarnings("Duplicates")
+    @PostMapping("/shop")
+    public String shop_page1(@RequestParam Map<String, String[]> parameters, Model model) {
+        ArrayList<Product> productlist = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            productlist.add(new Product("Sodavand","Cola" +i, 150.4,85,i+1));
+        }
+
+
+        for (int i = 10; i <  15; i++) {
+            productlist.add(new Product("Chips","Bugles"+i, 25,85,i));
+
+        }
+
+
+        for (int i = 16; i < 21 ; i++) {
+            productlist.add(new Product("T-shirt","Jesper Fan T-Shirt" + i, 300,85,i+1));
+            productlist.add(new Product("T-shirt","Mikkel Fan T-Shirt" +i, 300,85,i+1));
+        }
+        //Count categories
+
+        Set<String> categories = new HashSet<>();
+        for (int i = 0; i < productlist.size(); i++) {
+            categories.add(productlist.get(i).getCategory());
+        }
+
+        //Add cat
+        // categories.add("T-shirt");
+
+        //Add products
+//        productlist.add();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("productlist", productlist);
+
+        return "shop";
+    }
+
 
     @PostMapping({"/", "/login"})
     public String index(Model model, @RequestParam String username, @RequestParam String password) {
@@ -141,7 +247,7 @@ public class HomeController {
     @GetMapping("/booking_list")
     public String bookingList(Model model) {
         Booking booking = new Booking();
-        model.addAttribute("Bookings",booking.getBookings());
+        model.addAttribute("Bookings", booking.getBookings());
         return "booking_list";
     }
 
@@ -166,10 +272,11 @@ public class HomeController {
         model.addAttribute("activity", new Activity());
         return "newActivity";
     }
+
     @PostMapping(value = "/newActivity")
     public String newActivity(@ModelAttribute Activity activity, Model model) {
-       Activity.addNewActivity(activity);
-        return "redirect:owner_page";
+        Activity.addNewActivity(activity);
+        return "redirect:/owner_page";
     }
 
 }
