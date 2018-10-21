@@ -30,6 +30,19 @@ body{
     border-radius: 5px;
 }
 
+.activity-box2{
+    border: solid #555555;
+    background-color: rgba(247, 247, 247, 0.9);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 600px;
+    height: 510px;
+    margin: auto;
+    border-radius: 5px;
+}
+
 .activity-list-box{
     border: solid #555555;
     background-color: rgba(247, 247, 247, 0.9);
@@ -222,11 +235,11 @@ tr:nth-child(even){
 }
 
 .row-top {
-    margin-top: 110px;
+    margin-top: 107px;
 }
 
-.row-top-175px {
-    margin-top: 175px;
+.row-top-40px {
+    margin-top: 40px;
 }
 
 .margin-left-30px {
@@ -260,4 +273,8 @@ tr:nth-child(even){
 
 .margin-top-15px {
     margin-top: 15px;
+}
+
+.margin-top-5px-negative {
+    margin-top: -5px;
 }
