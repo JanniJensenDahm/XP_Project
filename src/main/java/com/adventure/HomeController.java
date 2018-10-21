@@ -55,7 +55,7 @@ public class HomeController {
     public String shop_page(Model model) {
     //Dummy values
 
-    ArrayList<Product> productlist = new ArrayList<>();
+    /*ArrayList<Product> productlist = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             productlist.add(new Product("Sodavand","Cola" +i, 150.4,85,i+1));
@@ -71,13 +71,9 @@ public class HomeController {
         for (int i = 16; i < 21 ; i++) {
             productlist.add(new Product("T-shirt","Jesper Fan T-Shirt" +i, 300,85,i+1));
             productlist.add(new Product("T-shirt","Mikkel Fan T-Shirt" +i, 300,85,i+1));
-        }
+        }*/
 
-
-
-        /* THS WILL WORK WHEN THE OTHER TEAMS METHODS IS IMPLEMENTED
         ArrayList<Product> productlist = Product.getProducts();
-*/
 
         Set<String> categories = new HashSet<>();
         for (int i = 0; i < productlist.size(); i++) {
