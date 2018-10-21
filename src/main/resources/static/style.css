@@ -110,7 +110,6 @@ tr:nth-child(even){
     padding: 10px;
     width: 250px;
     height: 40px;
-    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     border: solid 1.5px #00a6f3;
@@ -213,7 +212,6 @@ tr:nth-child(even){
 }
 
 .logintooltipicon{
-    margin-top: 50px;
     height: 40px;
     width: 40px;
     padding: 10px;
@@ -221,5 +219,9 @@ tr:nth-child(even){
 
 .tooltip-right{
     top: 5px;
+}
+
+.emptyRow{
+    height: 50px;
 }
 
