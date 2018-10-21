@@ -17,7 +17,7 @@
     <div class="header">
         <div class="row">
             <a href="/index"><img class="logout" th:src="@{/Graphics/logout.png}" height="50" width="50"/></a>
-            <img class="logo" th:src="@{/Graphics/logo.png}"/>
+            <img class="logo" th:src="@{/Graphics/logo.png}" th:height="221" th:width="394"/>
         </div>
     </div>
     <div class="container activity-list-box">
@@ -31,7 +31,7 @@
 
         </div>
 
-        <table class="col-md-12 text-center booking-list-header">
+        <table class="col-md-12 text-center booking-list-header margin-left-10px">
             <tr class="row">
                 <th class="col-md-1">Nr</th>
                 <th class="col-md-1">Aktiviteter</th>
@@ -62,7 +62,7 @@
         </div>
         <!--<button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>-->
         <form method="post" action="/add_activity">
-            <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
+            <button type="button" name="back_btn" class="btn btn-danger list_back_btn" onclick="goBack()">TILBAGE</button>
         </form>
 
 
@@ -83,43 +83,28 @@
 
 <!-- Optional JavaScript -->
 
-<script>
-    function myFunction() {
-        var input = document.getElementById("searchBox");
-        var filter = input.value.toUpperCase();
-        var table = document.getElementById("table");
-        var tr = table.getElementsByTagName("tr");
-        for(i = 0; i < tr.length; i++){
-            var tdActivity = tr[i].getElementsByTagName("td")[1];
-            var tdDate = tr[i].getElementsByTagName("td")[5];
-            var tdTime = tr[i].getElementsByTagName("td")[6];
-            if(tdDate || tdTime){
-                if(tdActivity.innerHTML.toUpperCase().indexOf(filter) > -1 || tdDate.innerHTML.toUpperCase().indexOf(filter) > -1 || tdTime.innerHTML.toUpperCase().indexOf(filter) > -1){
-                    tr[i].style.display = "";
-                }else{
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
-
-
 <!--Calculate price-->
 <script type="text/javascript">
     $("#people").keyup(function () {
         var people = $('#people').val();
         var pricePerHour = 350;
         var result = people * pricePerHour;
+
         $('#price').val(result + " Kr");
+
     });
+
 </script>
 
+<script>
 
+    function goBack() {
 
+        window.history.back();
 
+    }
 
-
+</script>
 
 </body>
 </html>

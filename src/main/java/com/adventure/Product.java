@@ -1,5 +1,11 @@
 package com.adventure;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Product {
     private String category;
     private String name;
@@ -21,6 +27,10 @@ public class Product {
         this.price = price;
         this.inventory = inventory;
         this.id = id;
+    }
+
+    public Product() {
+
     }
 
     public String getCategory() {
@@ -53,6 +63,60 @@ public class Product {
 
     public void setInventory(int inventory) {
         this.inventory = inventory;
+    }
+
+    public Product getProductById(int id) {
+        Product product = null;
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "SELECT * FROM Products WHERE id = ?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    product = new Product(rs.getString("category"), rs.getString("name"), rs.getDouble("price"), rs.getInt("inventory"), rs.getInt("id"));
+                }
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public ArrayList<Product> getProductList() {
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "SELECT * FROM Products";
+        ArrayList<Product> productList = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    try {
+                        productList.add(new Product(
+                                rs.getString("category"),
+                                rs.getString("name"),
+                                rs.getDouble("price"),
+                                rs.getInt("inventory"),
+                                rs.getInt("id")));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     @Override
