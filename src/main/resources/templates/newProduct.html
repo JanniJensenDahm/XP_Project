@@ -10,6 +10,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{style.css}">
 
+
     <title>Adventure Alley</title>
 </head>
 <body>
@@ -27,13 +28,13 @@
             <form method="post" th:action="@{/newProduct}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Kategori</p>
-                    <input class="col-md-7 activity-input" required th:field="${product.category}">
+                    <input class="col-md-7 activity-input" required pattern=".*\S+.*" id="keypress" th:field="${product.category}">
                     <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Navn</p>
-                    <input class="col-md-7" required th:field="${product.name}">
+                    <input class="col-md-7" required pattern=".*\S+.*" id="keypresss" th:field="${product.name}">
                     <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Navn på det produkt som du vil tilføje"/>
                 </div>
@@ -47,7 +48,7 @@
                     <p class="col-md-4 activity-label">Lagerbeholdning</p>
                     <input type="number" min="1" class="col-md-7" required th:field="${product.inventory}" >
                     <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Hvilket antal af produktet som vi har på lager"/>
+                         data-placement="right" title="Antal af produkter der er på lager"/>
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top25px">
@@ -79,6 +80,20 @@
     function goBack() {
         window.history.back();
     }
+</script>
+
+<script>
+    $( "#keypress" ).keypress(function() {
+        var val = $(this).val();
+        val = val.substr(0, 1).toUpperCase() + val.substr(1);
+        $(this).val(val);
+    });
+</script>
+<script>$( "#keypresss" ).keypress(function() {
+var val = $(this).val();
+val = val.substr(0, 1).toUpperCase() + val.substr(1);
+$(this).val(val);
+});
 </script>
 
 </body>
