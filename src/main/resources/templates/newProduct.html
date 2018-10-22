@@ -27,24 +27,27 @@
             <form method="post" th:action="@{/newProduct}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Kategori</p>
-                    <select class="col-md-7 activity-input" required th:field="${product.category}"> 
-                        <option th:value="Slik">Slik</option>
-                        <option th:value="T-Shirt">T-Shirt</option>
-                        <option th:value="Chips">Chips</option>
-                        <option th:value="Sodavand">Sodavand</option>
-                    </select>
+                    <input class="col-md-7 activity-input" required th:field="${product.category}">
+                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
+                         data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Navn på produkt</p>
-                    <input class="col-md-8" required th:field="${product.name}">
+                    <p class="col-md-4 activity-label">Navn</p>
+                    <input class="col-md-7" required th:field="${product.name}">
+                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
+                         data-placement="right" title="Navn på det produkt som du vil tilføje"/>
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Pris på produkt</p>
-                    <input type="number" class="col-md-8" required th:field="${product.price}">
+                    <p class="col-md-4 activity-label">Pris</p>
+                    <input type="number" min="1" step="0.05" class="col-md-7" required th:field="${product.price}">
+                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
+                         data-placement="right" title="Pris på produktet"/>
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">På Lager</p>
-                    <input type="number" class="col-md-8" required th:field="${product.inventory}" >
+                    <p class="col-md-4 activity-label">Lagerbeholdning</p>
+                    <input type="number" min="1" class="col-md-7" required th:field="${product.inventory}" >
+                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
+                         data-placement="right" title="Hvilket antal af produktet som vi har på lager"/>
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top25px">
