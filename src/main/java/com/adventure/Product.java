@@ -170,5 +170,20 @@ public class Product {
         }
     }
 
+    public static void delteProduct(int id) {
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "DELETE FROM Products  WHERE id=?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

@@ -22,7 +22,7 @@
     </div>
     <div class="container main">
         <div class="container activity-box">
-            <h2 class="box-header">Tilføj Aktivitet</h2>
+            <h2 class="box-header">Opret Booking</h2>
             <form method="post" th:action="@{/add_activity}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Aktivitetsnavn</p>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Antal deltagere</p>
-                    <input class="col-md-7" id="people">
+                    <input type="number" min="1" class="col-md-7" id="people">
                     <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Antal personer der skal deltage i aktiviteten"/>
                 </div>

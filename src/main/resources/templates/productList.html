@@ -33,6 +33,8 @@
                 <th class="col-md-1">Pris</th>
                 <th class="col-md-2">På lager</th>
                 <th class="col-md-2">Kategori</th>
+                <th class="col-md-4">&nbsp;</th>
+                <th class="col-md-1">&nbsp;</th>
             </tr>
         </table>
 
@@ -44,18 +46,22 @@
                         <td class="col-md-1" th:text="${Product.price}"></td>
                         <td class="col-md-2" th:text="${Product.inventory}"></td>
                         <td class="col-md-2" th:text="${Product.category}"></td>
-                        <td><a th:href="${'editProduct/' + Product.id}">
-                            <button class="btn btn-success create_booking_btn">Rediger</button>
+                        <td class="col-md-3">
+                            <a th:href="${'editProduct/' + Product.id}"
+                             class="btn btn-success create_booking_btn">REDIGER
                         </a>
-                            <!--<a th:href="${'sletReservation/' + reservation.reservationID}">-->
-                                <!--<button class="btn-del">Slet</button>-->
+                            </td>
+                        <td class="col-md-1">
+                            <a onclick="return confirm('Er du sikker?')" th:href="${'deleteProduct/' + Product.id}"
+                               class="btn btn-danger back_btn mb-0">SLET
+                            </a>
                         </td>
                     </tr>
                 </table>
         </div>
         <!--<button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>-->
         <form>
-            <button onclick="goBack()"class="btn btn-danger back_btn">TILBAGE</button>
+            <a href="owner_page" class="btn btn-danger back_btn">TILBAGE</a>
             <!--<button type="submit" name=""-->
         </form>
 

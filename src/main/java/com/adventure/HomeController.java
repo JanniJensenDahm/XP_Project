@@ -224,4 +224,13 @@ public class HomeController {
         model.addAttribute("Products",product.getProducts());
         return "productList";
     }
+
+    @GetMapping(value = "/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id") int id) {
+            Product.delteProduct(id);
+        return "redirect:/productList";
+    }
+
+
+
 }
