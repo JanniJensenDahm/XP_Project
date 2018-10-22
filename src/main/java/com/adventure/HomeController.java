@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @SessionAttributes({"accessLevel", "Booking"})
 @Controller
 public class HomeController {
@@ -72,6 +74,15 @@ public class HomeController {
         return "redirect:/newProduct";
     }
 
+    @PostMapping(value = "booking",params = "check_prodlist_btn")
+    public String checkProductlist( Model model) {
+        return "redirect:/productList";
+    }
+
+    @PostMapping(value = "editProduct",params = "check_back_btn")
+    public String backProductlist( Model model) {
+        return "redirect:/productList";
+    }
 
     @GetMapping("/create_booking")
     public String createBooking(Model model) {
@@ -189,4 +200,28 @@ public class HomeController {
         return "redirect:/owner_page";
     }
 
+    @GetMapping(value = "/editProduct/{id}")
+    public String editProduct(@PathVariable("id") int id, Model model) {
+        ArrayList<Product> productList = Product.getProducts();
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                model.addAttribute("product", product);
+            }
+        }
+        return "editProduct";
+    }
+
+    @PostMapping(value = "/editProduct")
+    public String editProduct(@ModelAttribute Product product, @RequestParam("id") int id) {
+        product.setId(id);
+        Product.editProduct(product);
+        return "redirect:/productList";
+    }
+
+    @GetMapping("/productList")
+    public String productList(Model model) {
+        Product product = new Product();
+        model.addAttribute("Products",product.getProducts());
+        return "productList";
+    }
 }

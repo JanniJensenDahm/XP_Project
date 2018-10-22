@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{style.css}">
+
+    <title>Adventure Alley</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header">
+        <div class="row">
+            <a href="/index"><img class="logout" th:src="@{/Graphics/logout.png}" height="50" width="50"/></a>
+            <img class="logo" th:src="@{/Graphics/logo.png}"/>
+        </div>
+    </div>
+    <div class="container activity-list-box">
+        <div class="row">
+            <div class="col-md-4 "><h2 class="box-header text-left">Produkter</h2></div>
+
+        </div>
+
+        <table class="col-md-12 text-center booking-list-header">
+            <tr class="row">
+                <th class="col-md-1">ID</th>
+                <th class="col-md-2">Navn</th>
+                <th class="col-md-1">Pris</th>
+                <th class="col-md-2">På lager</th>
+                <th class="col-md-2">Kategori</th>
+            </tr>
+        </table>
+
+        <div class="booking-list">
+                <table class="col-md-12 text-center booking-list" id="table"> <!-- TODO: FOREACH til hver booking -->
+                    <tr class="row" th:each="Product: ${Products}">
+                        <td class="col-md-1" th:text="${Product.id}"></td>
+                        <td class="col-md-2" th:text="${Product.name}"></td>
+                        <td class="col-md-1" th:text="${Product.price}"></td>
+                        <td class="col-md-2" th:text="${Product.inventory}"></td>
+                        <td class="col-md-2" th:text="${Product.category}"></td>
+                        <td><a th:href="${'editProduct/' + Product.id}">
+                            <button class="btn btn-success create_booking_btn">Rediger</button>
+                        </a>
+                            <!--<a th:href="${'sletReservation/' + reservation.reservationID}">-->
+                                <!--<button class="btn-del">Slet</button>-->
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <!--<button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>-->
+        <form>
+            <button onclick="goBack()"class="btn btn-danger back_btn">TILBAGE</button>
+            <!--<button type="submit" name=""-->
+        </form>
+
+
+    </div>
+</div>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+</body>
+</html>
