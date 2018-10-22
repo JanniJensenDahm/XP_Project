@@ -23,33 +23,34 @@
 
     <div class="container main">
         <div class="container activity-box heightauto">
-            <h2 class="box-header">Tilføj Aktivitet</h2>
-            <form method="post" th:action="@{/newActivity}">
+            <h2 class="box-header">Tilføj Produkt</h2>
+            <form method="post" th:action="@{/newProduct}">
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Aktivitetsnavn</p>
-                    <input class="col-md-8" required th:field="${activity.activity_name}"> <!-- TODO: TH:VALUE -->
+                    <p class="col-md-4 activity-label">Kategori</p>
+                    <select class="col-md-7 activity-input" required th:field="${product.category}"> 
+                        <option th:value="Slik">Slik</option>
+                        <option th:value="T-Shirt">T-Shirt</option>
+                        <option th:value="Chips">Chips</option>
+                        <option th:value="Sodavand">Sodavand</option>
+                    </select>
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Pris på aktivitet</p>
-                    <input type="number" class="col-md-8" required th:field="${activity.activity_price}">
+                    <p class="col-md-4 activity-label">Navn på produkt</p>
+                    <input class="col-md-8" required th:field="${product.name}">
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Udstyr</p>
-                    <input type="number" class="col-md-8" required th:field="${activity.equipment}">
+                    <p class="col-md-4 activity-label">Pris på produkt</p>
+                    <input type="number" class="col-md-8" required th:field="${product.price}">
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Aktivitetskrav</p>
-                    <input class="col-md-8" required th:field="${activity.requirements}" >
-                </div>
-                <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Varighed på aktivitet</p>
-                    <input class="col-md-8" required th:field="${activity.activity_duration}">
+                    <p class="col-md-4 activity-label">På Lager</p>
+                    <input type="number" class="col-md-8" required th:field="${product.inventory}" >
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top25px">
-                        <button type="submit" onclick="goBack()" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
+                        <button onclick="goBack()" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
                         <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn">
-                            OPRET AKTIVITET
+                            OPRET PRODUKT
                         </button>
                     </div>
                 </div>
@@ -76,8 +77,6 @@
         window.history.back();
     }
 </script>
-
-
 
 </body>
 </html>

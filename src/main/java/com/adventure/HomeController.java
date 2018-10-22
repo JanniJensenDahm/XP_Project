@@ -67,6 +67,12 @@ public class HomeController {
         return "redirect:/owner_page";
     }
 
+    @PostMapping(value = "booking", params = "check_product_btn")
+    public String checkProductPost(Model model) {
+        return "redirect:/newProduct";
+    }
+
+
     @GetMapping("/create_booking")
     public String createBooking(Model model) {
         Booking booking = new Booking();
@@ -170,6 +176,17 @@ public class HomeController {
     public String newActivity(@ModelAttribute Activity activity, Model model) {
        Activity.addNewActivity(activity);
         return "redirect:owner_page";
+    }
+
+    @GetMapping("/newProduct")
+    public String newProduct(Model model) {
+        model.addAttribute("product", new Product());
+        return "newProduct";
+    }
+    @PostMapping(value = "/newProduct")
+    public String newProduct(@ModelAttribute Product product, Model model) {
+        Product.addProduct(product);
+        return "redirect:/owner_page";
     }
 
 }
