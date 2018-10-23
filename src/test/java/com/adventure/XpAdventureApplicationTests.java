@@ -42,13 +42,4 @@ public class XpAdventureApplicationTests {
         product = product.getProductById(5);
         System.out.println(product.toString());
     }
-
-    @Test
-    public void getProductList() {
-        ArrayList<Product> productList = new ArrayList();
-
-        Product product = new Product();
-
-        System.out.println(product.getProductList());
-    }
 }
