@@ -27,13 +27,13 @@
             <form method="post" th:action="@{/editProduct}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">ID</p>
-                    <input readonly class="col-md-7 activity-input" required th:field="${product.id}">
+                    <input readonly class="col-md-7 activity-input" id="keypress" required th:field="${product.id}">
                     <img class="col-md-1 inputTooltip" src="../Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Kategori</p>
-                    <input class="col-md-7 activity-input" required th:field="${product.category}" placeholder="">
+                    <input class="col-md-7 activity-input" id="keypresss" required th:field="${product.category}" placeholder="">
                     <img class="col-md-1 inputTooltip" src="../Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
@@ -85,6 +85,20 @@
     function goBack() {
         window.history.back();
     }
+</script>
+
+<script>
+    $( "#keypress" ).keypress(function() {
+        var val = $(this).val();
+        val = val.substr(0, 1).toUpperCase() + val.substr(1);
+        $(this).val(val);
+    });
+</script>
+<script>$( "#keypresss" ).keypress(function() {
+    var val = $(this).val();
+    val = val.substr(0, 1).toUpperCase() + val.substr(1);
+    $(this).val(val);
+});
 </script>
 
 </body>
