@@ -108,7 +108,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
+                        <button type="button" name="back_btn" class="btn btn-danger back_btn" onclick="goBack()">TILBAGE</button>
                         <button type="submit" name="add_activity_btn" class="btn btn-success add_activity_btn">TILFØJ NY
                             AKTIVITET
                         </button>
@@ -151,6 +151,10 @@
 
 </script>
 
-
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>
