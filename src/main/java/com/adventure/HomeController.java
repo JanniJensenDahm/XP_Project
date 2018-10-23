@@ -12,6 +12,7 @@ import java.util.Set;
 @SessionAttributes({"accessLevel", "Booking"})
 @Controller
 public class HomeController {
+    private Login login = null;
 
 
     @GetMapping({"/", "index"})
@@ -111,7 +112,7 @@ public class HomeController {
     @PostMapping({"/", "/login"})
     public String index(Model model, @RequestParam String username, @RequestParam String password) {
         //Create login
-        Login login = new Login(username, password);
+        login = new Login(username, password);
         //Verify user
         login.verifyUser();
         model.addAttribute("accessLevel", login.getAccessLevel());
@@ -201,6 +202,9 @@ public class HomeController {
 
     @PostMapping(value = "/add_activity", params = "create_booking_btn")
     public String activitiesPost(@ModelAttribute Booking booking, @ModelAttribute Activity activity) {
+        if(login.getAccessLevel() == 1) {
+            return "owner_page";
+        }
         //    booking.addActivity(activity);
         return "booking";
 

@@ -21,40 +21,26 @@
     </div>
     <div class="container main">
         <div class="container activity-box">
-            <h2 class="box-header">OWNER PAGE</h2>
-            <form method="post" th:action="@{/owner_page}">
+            <form method="post" th:action="@{/booking}">
                 <div class="row">
-                    <button type="submit" name="create_booking_btn" class="btn btn-lg btn-success owner-button">OPRET
+                    <button type="submit" name="create_booking_btn" class="btn btn-lg btn-success owner-button row-top">OPRET
                         BOOKING
                     </button>
                 </div>
                 <div class="row">
-                    <button type="submit" name="edit_booking_btn" class="btn btn-lg btn-success owner-button">REDIGER
-                        BOOKING
-                    </button>
+                    <button type="submit" name="edit_booking_btn" class="btn btn-lg btn-success owner-button">REDIGER BOOKING</button>
                 </div>
                 <div class="row">
-                    <button type="submit" name="check_booking_btn" class="btn btn-lg btn-success owner-button">SE
-                        BOOKINGER
-                    </button>
+                    <button type="submit" name="check_booking_btn" class="btn btn-lg btn-success owner-button">SE BOOKINGER</button>
                 </div>
                 <div class="row">
-                    <button type="submit" name="check_activity_btn" class="btn btn-lg btn-success owner-button">TILFØJ
-                        AKTIVITET
-                    </button>
+                    <button type="submit" name="check_activity_btn" class="btn btn-lg btn-success owner-button">TILFØJ AKTIVITET</button>
                 </div>
                 <div class="row">
-                    <button type="submit" name="check_booking_btn" class="btn btn-lg btn-success owner-button">REDIGER
-                        AKTIVITET
-                    </button>
-                </div>
-                <div class="row">
-                    <button type="submit" name="shop_btn" class="btn btn-lg btn-success owner-button">SHOP
-                    </button>
+                    <button type="submit" name="edit_activity_btn" class="btn btn-lg btn-success owner-button">REDIGER AKTIVITET</button>
                 </div>
             </form>
         </div>
-
     </div>
 </div>
 
@@ -72,4 +58,3 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-<!--th:href="@{add_activity}-->

@@ -22,33 +22,33 @@
     </div>
 
     <div class="container main">
-        <div class="container activity-box heightauto">
+        <div class="container activity-box2 heightauto">
             <h2 class="box-header">Tilføj Aktivitet</h2>
             <form method="post" th:action="@{/newActivity}">
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Aktivitetsnavn</p>
-                    <input class="col-md-8" required th:field="${activity.activity_name}"> <!-- TODO: TH:VALUE -->
+                    <p class="col-md-4 activity-label margin-top-7px">Aktivitetsnavn</p>
+                    <input class="col-md-8 input-enlarge" required th:field="${activity.activity_name}"> <!-- TODO: TH:VALUE -->
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Pris på aktivitet</p>
-                    <input type="number" class="col-md-8" required th:field="${activity.activity_price}">
+                    <p class="col-md-4 activity-label margin-top-7px">Pris på aktivitet</p>
+                    <input type="number" class="col-md-8 input-enlarge" required th:field="${activity.activity_price}">
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Udstyr</p>
-                    <input type="number" class="col-md-8" required th:field="${activity.equipment}">
+                    <p class="col-md-4 activity-label margin-top-7px">Udstyr</p>
+                    <input type="number" class="col-md-8 input-enlarge" required th:field="${activity.equipment}">
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Aktivitetskrav</p>
-                    <input class="col-md-8" required th:field="${activity.requirements}" >
+                    <p class="col-md-4 activity-label margin-top-7px">Aktivitetskrav</p>
+                    <input class="col-md-8 input-enlarge" required th:field="${activity.requirements}" >
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Varighed på aktivitet</p>
-                    <input class="col-md-8" required th:field="${activity.activity_duration}">
+                    <p class="col-md-4 activity-label margin-top-5px-negative">Varighed på aktivitet</p>
+                    <input class="col-md-8 input-enlarge" required th:field="${activity.activity_duration}">
                 </div>
-                <div class="row">
-                    <div class="col-md-12 margin-top25px">
-                        <button type="button" onclick="goBack()" name="back_btn_activity" class="btn btn-danger back_btn_activity">TILBAGE</button>
-                        <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn">
+                <div class="row row-top-40px">
+                    <div class="col-md-12">
+                        <button type="button" onclick="goBack()" name="back_btn_activity" class="btn btn-danger back_btn margin-left-30px">TILBAGE</button>
+                        <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn margin-right-30px">
                             OPRET AKTIVITET
                         </button>
                     </div>
@@ -60,6 +60,7 @@
     </div>
 </div>
 
+<!-- JS -->
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -76,8 +77,5 @@
         window.history.back();
     }
 </script>
-
-
-
 </body>
 </html>
