@@ -127,10 +127,11 @@ tr:nth-child(even){
     max-width: 394px;
     width: auto;
     height: auto;
-
-
 }
 
+.shopLogo {
+    width: 400px; !important;
+}
 
 .logout{
     display: inline-block;
