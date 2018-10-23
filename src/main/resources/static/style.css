@@ -245,3 +245,18 @@ tr:nth-child(even){
     width: 40px;
     padding: 10px;
 }
+
+.edit_btn{
+    float: right;
+}
+
+.delete_btn{
+    float: right;
+}
+
+
+.back_product_btn {
+    margin-left: 10px;
+    /*margin-top: 25px;*/
+    margin-bottom: 50px;
+}

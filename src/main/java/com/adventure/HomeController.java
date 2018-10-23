@@ -196,7 +196,7 @@ public class HomeController {
     }
     @PostMapping(value = "/newProduct")
     public String newProduct(@ModelAttribute Product product, Model model) {
-        Product.addProduct(product);
+            Product.addProduct(product);
         return "redirect:/owner_page";
     }
 
