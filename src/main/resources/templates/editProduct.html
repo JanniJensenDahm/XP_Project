@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{../style.css}">
+    <link rel="stylesheet" th:href="@{../style2.css}">
 
     <title>Adventure Alley</title>
 </head>
@@ -27,13 +27,13 @@
             <form method="post" th:action="@{/editProduct}">
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">ID</p>
-                    <input readonly class="col-md-7 activity-input" id="keypress" required th:field="${product.id}">
+                    <input readonly class="col-md-7 activity-input" required th:field="${product.id}">
                     <img class="col-md-1 inputTooltip" src="../Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="ID på det produkt som redigeres"/>
+                         data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
                 <div class="row activity-row">
                     <p class="col-md-4 activity-label">Kategori</p>
-                    <input class="col-md-7 activity-input" id="keypresss" required th:field="${product.category}" placeholder="">
+                    <input class="col-md-7 activity-input" required th:field="${product.category}" placeholder="">
                     <img class="col-md-1 inputTooltip" src="../Graphics/inputTooltip.png" data-toggle="tooltip"
                          data-placement="right" title="Navn på kategori som produktet tilhører"/>
                 </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top25px">
-                        <button type="submit" name="check_back_btn" class="btn btn-danger back_btn_activity">TILBAGE</button>
+                        <button type="button" name="check_back_btn" class="btn btn-danger back_btn_activity" onclick="goBack()">TILBAGE</button>
                         <button type="submit" name="create_activity_btn" class="btn btn-success create_booking_btn">
                             REDIGER PRODUKT
                         </button>
@@ -85,20 +85,6 @@
     function goBack() {
         window.history.back();
     }
-</script>
-
-<script>
-    $( "#keypress" ).keypress(function() {
-        var val = $(this).val();
-        val = val.substr(0, 1).toUpperCase() + val.substr(1);
-        $(this).val(val);
-    });
-</script>
-<script>$( "#keypresss" ).keypress(function() {
-    var val = $(this).val();
-    val = val.substr(0, 1).toUpperCase() + val.substr(1);
-    $(this).val(val);
-});
 </script>
 
 </body>

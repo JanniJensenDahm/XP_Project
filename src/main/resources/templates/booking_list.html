@@ -31,7 +31,7 @@
 
         </div>
 
-        <table class="col-md-12 text-center booking-list-header">
+        <table class="col-md-12 text-center booking-list-header margin-left-10px">
             <tr class="row">
                 <th class="col-md-1">Nr</th>
                 <th class="col-md-1">Aktiviteter</th>
@@ -62,7 +62,7 @@
         </div>
         <!--<button type="submit" name="back_btn" class="btn btn-danger back_btn hot-btn">TILBAGE</button>-->
         <form method="post" action="/add_activity">
-            <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
+            <button type="button" name="back_btn" class="btn btn-danger list_back_btn" onclick="goBack()">TILBAGE</button>
         </form>
 
 
@@ -115,11 +115,10 @@
     });
 </script>
 
-
-
-
-
-
-
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>

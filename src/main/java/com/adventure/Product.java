@@ -1,6 +1,5 @@
 package com.adventure;
 
-import ch.qos.logback.core.db.dialect.MySQLDialect;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ public class Product {
     private double price;
     private int inventory;
     private int id;
-
 
     public int getId() {
         return id;
@@ -35,11 +33,8 @@ public class Product {
         this.inventory = inventory;
     }
 
-    public Product(String name) {
-        this.name = name;
-    }
-
     public Product() {
+
     }
 
     public String getCategory() {
@@ -126,33 +121,6 @@ public class Product {
                                 rs.getDouble("price"),
                                 rs.getInt("inventory"),
                                 rs.getInt("id")));
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            preparedStatement.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return productList;
-    }
-    public static ArrayList<Product> checkProducts() {
-        Connection con = AccessDB.getConnection();
-        String selectSQL = "SELECT COUNT(*) FROM users WHERE username=?";
-        ArrayList<Product> productList = new ArrayList<>();
-
-        try {
-            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs != null) {
-                while (rs.next()) {
-                    try {
-                        productList.add(new Product(
-                                rs.getString("name")));
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

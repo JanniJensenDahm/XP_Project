@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{style.css}">
-<!--dfgsdgs-->
+
     <title>Adventure Alley</title>
 </head>
 <body>
@@ -22,29 +22,23 @@
     </div>
     <div class="container main">
         <div class="container activity-box">
-            <h2 class="box-header">Opret Booking</h2>
+            <h2 class="box-header">Tilføj Aktivitet</h2>
             <form method="post" th:action="@{/add_activity}">
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Aktivitetsnavn</p>
-                    <input class="col-md-7" th:value="Minigolf" readonly> <!-- TODO: TH:VALUE -->
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                          data-placement="right" title="Den valgte aktivitet"/>
+                    <p class="col-md-4 activity-label margin-top-7px">Aktivitetsnavn</p>
+                    <input class="col-md-8 input-enlarge" th:value="Minigolf" readonly> <!-- TODO: TH:VALUE -->
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Pris</p>
-                    <input class="col-md-7" id="price" readonly placeholder="0 Kr">
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Pris udregnet udfra antal deltagere og den valgte aktivitet"/>
+                    <p class="col-md-4 activity-label margin-top-7px">Pris</p>
+                    <input class="col-md-8 input-enlarge" id="price" readonly placeholder="0 Kr">
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Dato</p>
-                    <input type="date" class="col-md-7">
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Dato for den valgte aktivitet"/>
+                    <p class="col-md-4 activity-label margin-top-7px">Dato</p>
+                    <input type="date" class="col-md-8 date-border-fix input-enlarge">
                 </div>
-                <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Tidspunkt</p>
-                    <select class="col-md-7 activity-input"> <!-- TODO: TH:IF MINIGOLF -->
+                <div class="row activity-row ">
+                    <p class="col-md-4 activity-label margin-top-7px">Tidspunkt</p>
+                    <select class="col-md-8 activity-input input-enlarge"> <!-- TODO: TH:IF MINIGOLF -->
                         <option selected>Vælg</option>
                         <option>10.00-12.00</option>
                         <option>12.00-14.00</option>
@@ -80,44 +74,34 @@
                          <option>19.00-20.30</option>
                          <option>20.30-22.00</option>
                      </select> -->
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Tid for den valgte aktivitet"/>
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Antal deltagere</p>
-                    <input type="number" min="1" class="col-md-7" id="people">
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Antal personer der skal deltage i aktiviteten"/>
+                    <p class="col-md-4 activity-label margin-top-7px">Antal deltagere</p>
+                    <input class="col-md-8 input-enlarge" id="people">
+                </div>
+                <div class="row activity-row ">
+                    <p class="col-md-4 activity-label margin-top-7px">Bookingansvarlig</p>
+                    <input class="col-md-8 input-enlarge" th:value="Charlotte"> <!-- TODO: TH:VALUE -->
                 </div>
                 <div class="row activity-row">
-                    <p class="col-md-4 activity-label">Bookingansvarlig</p>
-                    <input class="col-md-7" th:value="Charlotte"> <!-- TODO: TH:VALUE -->
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Den bookingmedarbejder der har oprettet aktiviteten"/>
-                </div>
-                <div class="row activity-row activity-row-last">
-                    <p class="col-md-4 activity-label">Aktivitetsansvarlig</p>
-                    <select class="col-md-7 activity-input"> <!-- TODO: TH:VALUES -->
+                    <p class="col-md-4 activity-label margin-top-7px">Aktivitetsansvarlig
+                    </p>
+                    <select class="col-md-8 activity-input input-enlarge"> <!-- TODO: TH:VALUES -->
                         <option selected>Vælg</option>
                         <option>Johnny</option>
                         <option>Peter</option>
                         <option>Christina</option>
                     </select>
-                    <img class="col-md-1 inputTooltip" src="Graphics/inputTooltip.png" data-toggle="tooltip"
-                         data-placement="right" title="Den aktivitetsmedarbejder der er ansvarlig for aktiviteten"/>
                 </div>
-                <div class="row">
+                <div class="row activity-row-last">
                     <div class="col-md-12">
-                        <button type="submit" name="back_btn" class="btn btn-danger back_btn">TILBAGE</button>
-                        <button type="submit" name="add_activity_btn" class="btn btn-success add_activity_btn">TILFØJ NY
+                        <button type="button" name="back_btn" class="btn btn-danger back_btn margin-bottom-10px" onclick="goBack()">TILBAGE</button>
+                        <button type="submit" name="add_activity_btn" class="btn btn-success add_activity_btn margin-bottom-10px">TILFØJ NY
                             AKTIVITET
                         </button>
-                        <button type="submit" name="create_booking_btn" class="btn btn-success create_booking_btn">
-                            OPRET
-                        </button>
+                        <button type="submit" name="create_booking_btn" class="btn btn-success create_booking_btn margin-bottom-10px">OPRET</button>
                     </div>
                 </div>
-
             </form>
         </div>
 
@@ -148,6 +132,15 @@
         $('#price').val(result + " Kr");
 
     });
+
+</script>
+<script>
+
+    function goBack() {
+
+        window.history.back();
+
+    }
 
 </script>
 

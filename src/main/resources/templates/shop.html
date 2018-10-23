@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{style.css}">
+
+    <title>Adventure Alley</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header">
+        <div class="row">
+            <a href="/index"><img class="logout" th:src="@{/Graphics/logout.png}" height="50" width="50"/></a>
+            <img class="logo shopLogo" th:src="@{/Graphics/logo.png}"/>
+        </div>
+    </div>
+    <div class="shop-box">
+        <div id="shopHeader" class="row margin0">
+            <div class="col-md-6">
+                <h2 class="box-header">Tilgængelige varer</h2>
+            </div>
+            <div class="col-md-6"><h2 class="box-header">Indkøbskurv</h2></div>
+        </div>
+        <div id="shopContent" class="row margin0">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12 text-center shop shopItems scrollbar">
+                        <div id="Cat" th:each="Category: ${categories}">
+                            <h3 class="shopCategory" th:text="${Category}"></h3>
+                            <div class="row itemRow" th:each="Product: ${productlist}"
+                                 th:if="${Product.getCategory() == Category}">
+                                <p class="offset-md-2 col-md-5 shopItemsName border-bottom"
+                                   th:text="${Product.getName()}">Cola</p>
+                                <p class="col-md-3 border-bottom padding0" th:text="${Product.getPrice() + '0 kr'}">
+                                    15kr</p>
+                                <p class="col-md-1 paddingLeft0"><i class="fas fa-plus" th:onclick="|addItem('${Product.name}', '${Product.price}', '${Product.id}')|"></i>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form method="post" action="/shop">
+                    <div id="shopBasket" class="row">
+                        <div id="innerShopBasket" class="col-md-12 text-center shop shopBasket scrollbar scrollbarRight">
+                        </div>
+                    </div>
+                    <div id="shopTotal" class="row shopTotal">
+                        <div class="offset-md-2 col-md-5 paddingTop10">
+                            <h5>Samlet pris: <span id="totalBuy">0.00 kr</span></h5>
+                        </div>
+                        <div class="col-md-1 paddingLeft0 paddingTop10">
+                        </div>
+                        <div class="offset-md-1 col-xs-3">
+                            <button type="submit" class="btn btn-success buyBtn">GENNEMFØR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="shopFooter" class="row margin0">
+            <div class="col-md-12">
+                    <button type="button" name="back_btn" class="btn btn-danger shopBackBtn" onclick="goBack()">TILBAGE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<!-- Optional JavaScript -->
+<script>
+    function calcPriceOfAllItems(id) {
+        if(document.getElementById("itemCount" + id)) {
+            var zeroCheck = document.getElementById("itemCount" + id).value;
+            if (parseInt(zeroCheck) === 0) {
+                removeRow(id);
+            } else {
+                var pricePerItemId = "pricePerItem" + id;
+                var itemCountId = "itemCount" + id;
+                var pricePerItem = document.getElementById(pricePerItemId).innerHTML.slice(0, -2);
+                var itemCount = document.getElementById(itemCountId).value;
+                var priceOfAllItems = pricePerItem * itemCount;
+                var priceOfAllItemsId = "priceOfAllItems" + id;
+
+                document.getElementById(priceOfAllItemsId).innerHTML = priceOfAllItems.toFixed(2) + " kr";
+
+                //Calculate total
+                var shopBasketRows = document.getElementsByClassName("shopBasketRow");
+                var sum = 0.0;
+                for (var i = 1; i <= shopBasketRows.length; i++) {
+                    var rowIdString = shopBasketRows[i - 1].id;
+                    var rowId = rowIdString.replace('shopBasketRow', '');
+                    var tempSum = document.getElementById("priceOfAllItems" + rowId).innerHTML;
+                    sum += parseFloat(tempSum);
+                }
+                document.getElementById("totalBuy").innerHTML = sum.toFixed(2) + " kr";
+            }
+        }
+    }
+</script>
+<script>
+    function plusAmount(id) {
+        var ItemCount = document.getElementById("itemCount" + id).value;
+        if (ItemCount >= 0 && ItemCount < 99) {
+            ItemCount++;
+        }
+        document.getElementById('itemCount' + id).value = ItemCount;
+    }
+</script>
+<script>
+    function minusAmount(id) {
+        var ItemCount = document.getElementById("itemCount" + id).value;
+        if (ItemCount > 0) {
+            ItemCount--;
+            document.getElementById('itemCount' + id).value = ItemCount;
+        }
+        if (ItemCount === 0) {
+            var temp = parseFloat(document.getElementById("totalBuy").innerHTML);
+            var tempPrice = parseFloat(document.getElementById("pricePerItem" + id).innerHTML);
+            document.getElementById("totalBuy").innerHTML = (temp - tempPrice).toFixed(2) + " kr";
+            removeRow(id);
+        }
+    }
+</script>
+<script>
+    function removeRow(id) {
+        var shopBasketRows = document.getElementsByClassName("shopBasketRow");
+        document.getElementById("shopBasketRow" + id).remove();
+        if (shopBasketRows.length === 0) {
+            document.getElementById("totalBuy").innerHTML = "0.00 kr";
+        }
+    }
+</script>
+<script>
+    function clearBasket() {
+        var parentDiv = document.getElementById("innerShopBasket");
+        while (parentDiv.firstChild) {
+        parentDiv.removeChild(parentDiv.firstChild);
+        }
+        document.getElementById("totalBuy").innerHTML = "0.00 kr";
+    }
+</script>
+<script>
+    function addItem() {
+        var shopBasketRows = document.getElementsByClassName("shopBasketRow");
+        var rowIds = [];
+
+        for (var i = 1; i <= shopBasketRows.length; i++) {
+            var rowIdString = shopBasketRows[i - 1].id;
+            var rowId = rowIdString.replace('shopBasketRow', '');
+            rowIds.push(rowId);
+        }
+
+        //Argument [0] is name, [1] is price and [2] is id
+        var id = arguments[2];
+        if (!rowIds.includes(id)) {
+
+            var div = document.createElement('div');
+            div.classList.add("row", "shopBasketRow");
+            div.id = "shopBasketRow" + id;
+
+            var p1 = document.createElement('p');
+            p1.classList.add("offset-md-1", "col-md-4", "shopItemsName", "border-bottom");
+            p1.innerHTML = arguments[0];
+            div.appendChild(p1);
+
+            var p2 = document.createElement('p');
+            p2.classList.add("col-md-2", "border-bottom", "pricePerItem", "padding0", "priceAlign");
+            p2.id = "pricePerItem" + id;
+            p2.innerHTML = arguments[1] + "0 kr";
+            div.appendChild(p2);
+
+            var p3 = document.createElement('p');
+            p3.classList.add("col-md-1", "shopBasketMinus");
+
+            var i1 = document.createElement('i');
+            i1.classList.add("fas", "fa-minus");
+            i1.setAttribute('onclick', 'minusAmount(' + id + ');calcPriceOfAllItems(' + id + ');');
+            p3.appendChild(i1);
+            div.appendChild(p3);
+
+            var inpt = document.createElement('input');
+            inpt.classList.add("col-md-1", "shopItemCount");
+            inpt.id = "itemCount" + id;
+            inpt.setAttribute('onchange', 'calcPriceOfAllItems(' + id + ');');
+            inpt.maxLength = "2";
+            inpt.min = "0";
+            inpt.type = "number";
+            inpt.value = "1";
+            inpt.name = id;
+            div.appendChild(inpt);
+
+            var p4 = document.createElement('p');
+            p4.classList.add("col-md-1", "shopBasketPlus");
+
+            var i2 = document.createElement('i');
+            i2.classList.add("fas", "fa-plus");
+            i2.setAttribute('onclick', 'plusAmount(' + id + ');calcPriceOfAllItems(' + id + ');');
+            p4.appendChild(i2);
+            div.appendChild(p4);
+
+            var p5 = document.createElement('p');
+            p5.classList.add("col-md-2", "totalPrice", "priceOfAllItems", "padding0", "shopBasketBorderBottom", "priceAlign");
+            p5.id = "priceOfAllItems" + id;
+            p5.innerHTML = arguments[1];
+            div.appendChild(p5);
+
+            document.getElementById('innerShopBasket').appendChild(div);
+            calcPriceOfAllItems(id);
+        } else {
+            plusAmount(id);
+            calcPriceOfAllItems(id);
+        }
+    }
+</script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

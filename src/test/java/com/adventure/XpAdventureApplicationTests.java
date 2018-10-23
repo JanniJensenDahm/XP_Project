@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class XpAdventureApplicationTests {
@@ -34,4 +36,10 @@ public class XpAdventureApplicationTests {
     }
 
 
+    @Test
+    public void getProductbyId() {
+        Product product = new Product();
+        product = product.getProductById(5);
+        System.out.println(product.toString());
+    }
 }

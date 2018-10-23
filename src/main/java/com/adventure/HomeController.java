@@ -5,10 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @SessionAttributes({"accessLevel", "Booking"})
 @Controller
 public class HomeController {
+    private Login login = null;
 
 
     @GetMapping({"/", "index"})
@@ -22,15 +26,100 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("owner_page")
+    @GetMapping("/owner_page")
     public String owner_page(Model model) {
         return "owner_page";
     }
 
+    @PostMapping(value = "/owner_page", params = "shop_btn")
+    public String shopPage() {
+        return "redirect:/shop";
+    }
+
+    @PostMapping(value = "/owner_page", params = "create_booking_btn")
+    public String createBoooking() {
+        return "redirect:/create_booking";
+    }
+
+    @PostMapping(value = "/owner_page", params = "check_booking_btn")
+    public String bookinglist() {
+        return "redirect:/booking_list";
+    }
+
+    @PostMapping(value = "/owner_page", params = "check_activity_btn")
+    public String newActivity() {
+        return "redirect:/newActivity";
+    }
+
+
+    @PostMapping(value = "/owner_page", params = "check_product_btn")
+    public String productlist() {
+        return "redirect:/productList";
+    }
+
+
+    @SuppressWarnings("Duplicates")
+    @GetMapping("/shop")
+    public String shop_page(Model model) {
+
+        ArrayList<Product> productlist = Product.getProducts();
+
+        Set<String> categories = new HashSet<>();
+        for (int i = 0; i < productlist.size(); i++) {
+            categories.add(productlist.get(i).getCategory());
+        }
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("productlist", productlist);
+
+
+        return "shop";
+    }
+
+    @SuppressWarnings("Duplicates")
+    @PostMapping("/shop")
+    public String shop_page1(Model model) {
+        ArrayList<Product> productlist = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            productlist.add(new Product("Sodavand","Cola" +i, 150.4,85,i+1));
+        }
+
+
+        for (int i = 10; i <  15; i++) {
+            productlist.add(new Product("Chips","Bugles"+i, 25,85,i));
+
+        }
+
+
+        for (int i = 16; i < 21 ; i++) {
+            productlist.add(new Product("T-shirt","Jesper Fan T-Shirt" + i, 300,85,i+1));
+            productlist.add(new Product("T-shirt","Mikkel Fan T-Shirt" +i, 300,85,i+1));
+        }
+        //Count categories
+
+        Set<String> categories = new HashSet<>();
+        for (int i = 0; i < productlist.size(); i++) {
+            categories.add(productlist.get(i).getCategory());
+        }
+
+        //Add cat
+        // categories.add("T-shirt");
+
+        //Add products
+//        productlist.add();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("productlist", productlist);
+
+        return "redirect:/shop";
+    }
+
+
     @PostMapping({"/", "/login"})
     public String index(Model model, @RequestParam String username, @RequestParam String password) {
         //Create login
-        Login login = new Login(username, password);
+        login = new Login(username, password);
         //Verify user
         login.verifyUser();
         model.addAttribute("accessLevel", login.getAccessLevel());
@@ -38,48 +127,43 @@ public class HomeController {
         return "redirect:/" + login.redirect();
     }
 
-    @GetMapping("booking")
+    @GetMapping("/booking")
     public String booking(Model model) {
         return "booking";
     }
 
-    @PostMapping(value = "booking", params = "create_booking_btn")
+    @PostMapping(value = "/booking", params = "create_booking_btn")
     public String bookingPost(Model model) {
         return "redirect:/create_booking";
     }
 
-    @PostMapping(value = "booking", params = "edit_booking_btn")
+    @PostMapping(value = "/booking", params = "edit_booking_btn")
     public String editbookingPost(Model model) {
         return "redirect:/edit_booking";
     }
 
 
-    @PostMapping(value = "booking", params = "check_booking_btn")
+    @PostMapping(value = "/booking", params = "check_booking_btn")
     public String checkbookingPost(Model model) {
         return "redirect:/booking_list";
     }
 
-    @PostMapping(value = "booking", params = "check_activity_btn")
+    @PostMapping(value = "/booking", params = "check_activity_btn")
     public String checkactivityPost(Model model) {
         return "redirect:/newActivity";
     }
 
-    @PostMapping(value = "booking", params = "create_activity_btn")
+    @PostMapping(value = "/booking", params = "create_activity_btn")
     public String activityPost(Model model) {
         return "redirect:/owner_page";
     }
 
-    @PostMapping(value = "booking", params = "check_product_btn")
+    @PostMapping(value = "/owner_page", params = "create_product_btn")
     public String checkProductPost(Model model) {
         return "redirect:/newProduct";
     }
 
-    @PostMapping(value = "booking",params = "check_prodlist_btn")
-    public String checkProductlist( Model model) {
-        return "redirect:/productList";
-    }
-
-    @PostMapping(value = "editProduct",params = "check_back_btn")
+    @PostMapping(value = "/editProduct",params = "check_back_btn")
     public String backProductlist( Model model) {
         return "redirect:/productList";
     }
@@ -135,6 +219,9 @@ public class HomeController {
 
     @PostMapping(value = "/add_activity", params = "create_booking_btn")
     public String activitiesPost(@ModelAttribute Booking booking, @ModelAttribute Activity activity) {
+        if(login.getAccessLevel() == 1) {
+            return "owner_page";
+        }
         //    booking.addActivity(activity);
         return "booking";
 
@@ -158,14 +245,10 @@ public class HomeController {
     @GetMapping("/booking_list")
     public String bookingList(Model model) {
         Booking booking = new Booking();
-        model.addAttribute("Bookings",booking.getBookings());
+        model.addAttribute("Bookings", booking.getBookings());
         return "booking_list";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
 
     /**
      * Redirects the user to login, and resets accessLevel
@@ -183,10 +266,11 @@ public class HomeController {
         model.addAttribute("activity", new Activity());
         return "newActivity";
     }
+
     @PostMapping(value = "/newActivity")
     public String newActivity(@ModelAttribute Activity activity, Model model) {
-       Activity.addNewActivity(activity);
-        return "redirect:owner_page";
+        Activity.addNewActivity(activity);
+        return "redirect:/owner_page";
     }
 
     @GetMapping("/newProduct")
@@ -196,7 +280,7 @@ public class HomeController {
     }
     @PostMapping(value = "/newProduct")
     public String newProduct(@ModelAttribute Product product, Model model) {
-            Product.addProduct(product);
+        Product.addProduct(product);
         return "redirect:/owner_page";
     }
 
@@ -227,7 +311,7 @@ public class HomeController {
 
     @GetMapping(value = "/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") int id) {
-            Product.delteProduct(id);
+        Product.delteProduct(id);
         return "redirect:/productList";
     }
 
