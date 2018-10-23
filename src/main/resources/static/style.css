@@ -44,7 +44,7 @@ body{
     left: 0;
     right: 0;
     width: 600px;
-    height: 610px;
+    /*height: 610px;*/
     margin: auto;
     border-radius: 5px;
 }

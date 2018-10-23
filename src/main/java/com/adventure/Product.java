@@ -1,10 +1,7 @@
 package com.adventure;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Product {
@@ -28,6 +25,12 @@ public class Product {
         this.price = price;
         this.inventory = inventory;
         this.id = id;
+    }
+    public Product(String category, String name, double price, int inventory) {
+        this.category = category;
+        this.name = name;
+        this.price = price;
+        this.inventory = inventory;
     }
 
     public Product() {
@@ -64,6 +67,17 @@ public class Product {
 
     public void setInventory(int inventory) {
         this.inventory = inventory;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "category='" + category + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", inventory=" + inventory +
+                ", id=" + id +
+                '}';
     }
 
     public Product getProductById(int id) {
@@ -120,14 +134,58 @@ public class Product {
         return productList;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "category='" + category + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", inventory=" + inventory +
-                ", id=" + id +
-                '}';
+    public static void addProduct (Product product) {
+        Connection con = AccessDB.getConnection();
+        String insertProductSQL = "INSERT INTO Products  (category, name, price, inventory) VALUES(?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = con.prepareStatement(insertProductSQL, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, product.getCategory());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setInt(4, product.getInventory());
+            preparedStatement.executeUpdate();
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+    public static void editProduct (Product product) {
+        Connection con = AccessDB.getConnection();
+        String insertProductSQL = "UPDATE Products SET category = ?, name = ?, price = ?, inventory = ? WHERE id =? ;";
+
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = con.prepareStatement(insertProductSQL, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, product.getCategory());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setInt(4, product.getInventory());
+            preparedStatement.setInt(5, product.getId());
+            preparedStatement.executeUpdate();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void delteProduct(int id) {
+        Connection con = AccessDB.getConnection();
+        String selectSQL = "DELETE FROM Products  WHERE id=?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
