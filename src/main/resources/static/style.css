@@ -21,7 +21,6 @@
 body{
     background: url('Graphics/background_backup.png') no-repeat fixed center;
     background-size: cover;
-    overflow-y:hidden;
 }
 
 .login-box{
