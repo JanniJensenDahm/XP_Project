@@ -130,7 +130,8 @@ tr:nth-child(even){
 }
 
 .shopLogo {
-    width: 400px; !important;
+    width: 350px;
+    height: 200px;
 }
 
 .logout{
